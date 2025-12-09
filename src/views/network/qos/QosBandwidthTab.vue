@@ -384,101 +384,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.qos-bandwidth-tab {
-  padding: 20px;
-}
-
-.form-section {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.form-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.enable-row {
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-color, #e5e7eb);
-}
-
-.form-label {
-  font-weight: 500;
-  color: var(--text-primary, #1f2937);
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 26px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 26px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:checked + .slider:before {
-  transform: translateX(24px);
-}
-
-.bandwidth-inputs {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-.bandwidth-field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.input-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.unit {
-  font-weight: 500;
-  color: var(--text-secondary, #6b7280);
-  white-space: nowrap;
-}
-
 .priority-table-container {
   width: 100%;
   overflow-x: auto;
@@ -531,18 +436,7 @@ input:checked + .slider:before {
   min-height: 16px;
 }
 
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
 @media (max-width: 768px) {
-  .bandwidth-inputs {
-    grid-template-columns: 1fr;
-  }
-
   .priority-table {
     font-size: 14px;
   }

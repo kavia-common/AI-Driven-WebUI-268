@@ -524,24 +524,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.qos-rule-tab {
-  padding: 20px;
-}
-
-.rule-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.rule-header h3 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-primary, #1f2937);
-}
-
 .rule-table-container {
   width: 100%;
   overflow-x: auto;
@@ -568,43 +550,6 @@ onMounted(() => {
 
 .icon-btn .material-icons {
   font-size: 20px;
-}
-
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.modal-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.form-label {
-  font-weight: 500;
-  color: var(--text-primary, #1f2937);
-}
-
-.field-hint {
-  font-size: 12px;
-  color: var(--text-secondary, #6b7280);
-  margin-top: 4px;
-}
-
-.modal-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: flex-end;
-  margin-top: 8px;
 }
 
 .draggable-table {
@@ -657,12 +602,6 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
-  .rule-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
   .draggable-table {
     font-size: 14px;
   }

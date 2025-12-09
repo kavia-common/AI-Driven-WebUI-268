@@ -212,55 +212,66 @@ onMounted(fetchDdns);
           <div v-else class="edit-view" :data-testid="qa('ddns-edit-view')">
             <h2 :data-testid="qa('ddns-edit-title')">{{ editingService?.ID ? t('ddns.editService') : t('ddns.addService') }}</h2>
             <form @submit.prevent="handleSave(editingService!)" v-if="editingService && ddnsData" :data-testid="qa('ddns-edit-form')">
-              <div class="form-group">
-                <label :data-testid="qa('ddns-edit-provider-label')">{{ t('ddns.provider') }}</label>
-                <select v-model="editingService.ServProv" :data-testid="qa('ddns-edit-provider-select')">
+              <div class="form-row">
+                <label class="form-label" :data-testid="qa('ddns-edit-provider-label')">{{ t('ddns.provider') }}</label>
+                <select
+                  v-model="editingService.ServProv"
+                  class="form-control select"
+                  :data-testid="qa('ddns-edit-provider-select')"
+                >
                   <option v-for="provider in ddnsData.Ddns.SupServProv" :key="provider" :value="provider">
                     {{ provider }}
                   </option>
                 </select>
               </div>
 
-              <div class="form-group">
-                <label :data-testid="qa('ddns-edit-domain-label')">{{ t('ddns.domain') }}</label>
+              <div class="form-row">
+                <label class="form-label" :data-testid="qa('ddns-edit-domain-label')">{{ t('ddns.domain') }}</label>
                 <input 
                   type="text" 
+                  class="form-control input"
                   :data-testid="qa('ddns-edit-domain-input')"
                   v-model="editingService.DomainName"
                   required
                 >
               </div>
 
-              <div class="form-group">
-                <label :data-testid="qa('ddns-edit-username-label')">{{ t('ddns.username') }}</label>
+              <div class="form-row">
+                <label class="form-label" :data-testid="qa('ddns-edit-username-label')">{{ t('ddns.username') }}</label>
                 <input 
                   type="text" 
+                  class="form-control input"
                   :data-testid="qa('ddns-edit-username-input')"
                   v-model="editingService.ServUsername"
                   required
                 >
               </div>
 
-              <div class="form-group">
-                <label :data-testid="qa('ddns-edit-password-label')">{{ t('ddns.password') }}</label>
+              <div class="form-row">
+                <label class="form-label" :data-testid="qa('ddns-edit-password-label')">{{ t('ddns.password') }}</label>
                 <input 
                   type="password" 
+                  class="form-control input"
                   :data-testid="qa('ddns-edit-password-input')"
                   v-model="editingService.ServPassword"
                   required
                 >
               </div>
 
-              <div class="form-group">
-                <label :data-testid="qa('ddns-edit-interface-label')">{{ t('ddns.wanInterface') }}</label>
-                <select v-model="editingService.UpdatedIP" :data-testid="qa('ddns-edit-interface-select')">
+              <div class="form-row">
+                <label class="form-label" :data-testid="qa('ddns-edit-interface-label')">{{ t('ddns.wanInterface') }}</label>
+                <select
+                  v-model="editingService.UpdatedIP"
+                  class="form-control select"
+                  :data-testid="qa('ddns-edit-interface-select')"
+                >
                   <option v-for="iface in ddnsData.Ddns.Interfaces" :key="iface" :value="iface">
                     {{ iface }}
                   </option>
                 </select>
               </div>
 
-              <div class="form-group">
+              <div class="form-row">
                 <div class="switch-label">
                   <span :data-testid="qa('ddns-edit-enable-label')">{{ t('common.enable') }}</span>
                   <label class="switch">
@@ -277,10 +288,19 @@ onMounted(fetchDdns);
               </div>
 
               <div class="button-group">
-                <button type="button" class="btn btn-secondary" :data-testid="qa('ddns-edit-cancel-button')" @click="handleCancel">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  :data-testid="qa('ddns-edit-cancel-button')"
+                  @click="handleCancel"
+                >
                   {{ t('ddns.cancel') }}
                 </button>
-                <button type="submit" class="btn btn-primary" :data-testid="qa('ddns-edit-save-button')">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  :data-testid="qa('ddns-edit-save-button')"
+                >
                   {{ t('ddns.save') }}
                 </button>
               </div>
@@ -289,7 +309,7 @@ onMounted(fetchDdns);
         </div>
       </template>
 
-      <div v-if="showSuccess" class="success-message" :data-testid="qa('ddns-success-message')">
+      <div v-if="showSuccess" class="toast-success" :data-testid="qa('ddns-success-message')">
         {{ t('common.apply') }} successful
       </div>
     </div>
@@ -297,7 +317,6 @@ onMounted(fetchDdns);
 </template>
 
 <style scoped>
-
 .section-title-sp {
   font-size: 1rem;
   color: var(--text-primary);
@@ -335,142 +354,16 @@ onMounted(fetchDdns);
   color: var(--text-primary);
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--text-primary);
-}
-
-input, select {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-size: 0.9rem;
-}
-
 .switch-label {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  margin-left: 1rem;
-  flex-shrink: 0;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 34px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: var(--primary-color);
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.success-message {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #4caf50;
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  animation: fadeInOut 3s ease-in-out;
-  z-index: 100;
-}
-
-.loading-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: var(--shadow-sm);
-}
-
-.error-state {
-  padding: 2rem;
-  text-align: center;
-  color: #dc3545;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: var(--shadow-sm);
-}
-
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(-20px); }
-  10% { opacity: 1; transform: translateY(0); }
-  90% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-20px); }
-}
-
 .card-actions {
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
-}
-
-.btn-action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  cursor: pointer;
-}
-
-.btn-action:hover {
-  color: var(--text-primary);
 }
 
 .btn-action .material-icons {
@@ -495,14 +388,6 @@ input:checked + .slider:before {
 
   .edit-view {
     padding: 1rem;
-  }
-
-  .button-group {
-    flex-direction: column;
-  }
-
-  .button-group .btn {
-    width: 100%;
   }
 
   .btn-danger {
