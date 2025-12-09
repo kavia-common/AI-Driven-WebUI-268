@@ -3,7 +3,7 @@ import { ref, onMounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { getCellularStatus, updateCellularSettings } from '../../../services/api/cellular';
 import type { CellularResponse } from '../../../types/cellular';
-import { BaseCheckbox, BaseInput, BaseSelect, BaseButton, BaseCard } from '../../../components/common';
+import { BaseInput, BaseSelect, BaseButton, BaseCard } from '../../../components/common';
 
 type PreferredAccessTechOption = { label: string; value: string };
 
@@ -58,14 +58,12 @@ const loadInitial = async () => {
 
     // Map some common representations to UI-friendly values
     const prefRaw = res.Cellular?.PreferredAccessTechnology || '';
-    // Normalize examples like 'NR', 'LTE', '5g', 'lte'
     const normalizedPref = prefRaw.toLowerCase();
     if (normalizedPref.includes('nr') || normalizedPref.includes('5g')) {
       formPreferredAccessTechnology.value = '5g';
     } else if (normalizedPref.includes('lte') || normalizedPref.includes('4g')) {
       formPreferredAccessTechnology.value = 'lte';
     } else {
-      // keep default
       formPreferredAccessTechnology.value = '5g';
     }
 
@@ -114,7 +112,6 @@ const handleSave = async () => {
     const payload = buildExactPayload();
     await updateCellularSettings(payload);
     success.value = t('common.saveSuccess') as string;
-    // Optionally refresh current data after save
     await loadInitial();
   } catch (e) {
     console.error('Failed to save Cellular settings', e);
@@ -125,7 +122,6 @@ const handleSave = async () => {
 };
 
 const handleCancel = () => {
-  // Reload original values from server
   loadInitial();
 };
 </script>
@@ -135,11 +131,7 @@ const handleCancel = () => {
     <h1 class="page-title">{{ t('menu.cellular') }}</h1>
 
     <BaseCard>
-      <template #header>
-        <h3 class="card-title">{{ t('cellular.basicInfo') }}</h3>
-        <p class="card-subtitle">{{ t('cellular.basicSubtitle') }}</p>
-      </template>
-
+      <!-- No header/title; NTP style uses body-only content -->
       <div v-if="loading" class="card-content">
         <div class="loading-state">
           <div class="loading-spinner"></div>
@@ -156,20 +148,26 @@ const handleCancel = () => {
             {{ success }}
           </div>
 
-          <!-- Standard two-column form grid -->
+          <!-- Two-column form layout per forms.css -->
           <div class="form-row form-row-2">
             <div class="form-group">
-              <BaseCheckbox
-                v-model="formInterfaceEnable"
-                :label="t('cellular.interfaceEnable') as string"
-              />
+              <div class="switch-label">
+                <span>{{ t('cellular.interfaceEnable') }}</span>
+                <label class="form-switch">
+                  <input type="checkbox" v-model="formInterfaceEnable" />
+                  <span class="form-switch-slider"></span>
+                </label>
+              </div>
             </div>
 
             <div class="form-group">
-              <BaseCheckbox
-                v-model="formRoamingEnabled"
-                :label="t('cellular.roamingEnabled') as string"
-              />
+              <div class="switch-label">
+                <span>{{ t('cellular.roamingEnabled') }}</span>
+                <label class="form-switch">
+                  <input type="checkbox" v-model="formRoamingEnabled" />
+                  <span class="form-switch-slider"></span>
+                </label>
+              </div>
             </div>
 
             <div class="form-group">
@@ -252,5 +250,12 @@ const handleCancel = () => {
   display: flex;
   align-items: center;
   gap: var(--space-4);
+}
+
+.switch-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-primary);
 }
 </style>
