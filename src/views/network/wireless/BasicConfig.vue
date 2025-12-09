@@ -133,7 +133,7 @@ onMounted(fetchBasicConfig);
         </div>
 
         <!-- Common SSID Settings Section -->
-        <div class="panel-section" :data-testid="qa('wireless-basic-config-common-ssid-section')">
+        <div class="panel-section panel-section--light" :data-testid="qa('wireless-basic-config-common-ssid-section')">
           <div class="section-title" :data-testid="qa('wireless-basic-config-common-ssid-title')">{{ t('wireless.commonSsidSettings') }}</div>
           <div class="card-content" :data-testid="qa('wireless-basic-config-common-ssid-content')">
             <!-- Common SSID Enable Toggle -->
@@ -157,7 +157,7 @@ onMounted(fetchBasicConfig);
         </div>
 
         <!-- MLO Settings Section -->
-        <div class="panel-section" :data-testid="qa('wireless-basic-config-mlo-section')">
+        <div class="panel-section panel-section--light" :data-testid="qa('wireless-basic-config-mlo-section')">
           <div class="section-title" :data-testid="qa('wireless-basic-config-mlo-title')">{{ t('wireless.mloSettings') }}</div>
           <div class="card-content" :data-testid="qa('wireless-basic-config-mlo-content')">
             <!-- MLO Enable Toggle -->
@@ -181,12 +181,16 @@ onMounted(fetchBasicConfig);
         </div>
 
         <!-- Common SSID Band Settings Section (shown when Common SSID is enabled) -->
-        <div v-if="wlanBasicData.WlanBasic.CommonSSIDEnable === 1" class="panel-section" :data-testid="qa('wireless-basic-config-common-ssid-band-section')">
+        <div
+          v-if="wlanBasicData.WlanBasic.CommonSSIDEnable === 1"
+          class="panel-section panel-section--light"
+          :data-testid="qa('wireless-basic-config-common-ssid-band-section')"
+        >
           <div class="band-header">
             <div class="section-title-sp" :data-testid="qa('wireless-basic-config-common-ssid-band-title')">{{ t('wireless.commonSsidBandSettings') }}</div>
           </div>
           
-          <div class="band-content" :data-testid="qa('wireless-basic-config-common-ssid-band-content')">
+          <div class="band-content card-content" :data-testid="qa('wireless-basic-config-common-ssid-band-content')">
             <div class="form-group">
               <div class="switch-label">
                 <span :data-testid="qa('wireless-basic-config-common-ssid-band-enable-label')">{{ t('common.enable') }}</span>
@@ -301,7 +305,6 @@ onMounted(fetchBasicConfig);
 .wireless-basic-config {
   background-color: white;
   border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
@@ -401,7 +404,7 @@ onMounted(fetchBasicConfig);
 }
 
 .band-content {
-  padding: 1.5rem;
+  padding: 0; /* spacing is now driven by .card-content for consistency */
 }
 
 .form-group {

@@ -53,11 +53,13 @@
   background-color: var(--bg-tertiary);
 }
 
-/* Panel Section (Legacy support) */
+/* Panel Section (Legacy support)
+ * Acts as a generic container; specific visual variants (light/heavy)
+ * should be applied via modifier utilities such as .panel-section--light.
+ */
 .panel-section {
   background-color: var(--bg-secondary);
   border-radius: 4px;
-  box-shadow: var(--shadow-md);
   overflow: hidden;
   margin-bottom: 1.5rem;
 }

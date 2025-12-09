@@ -1,14 +1,16 @@
 <template>
   <div class="qos-rule-tab">
     <BaseCard>
-      <div class="rule-header">
-        <h3>{{ t('qos.qosRuleLists') }}</h3>
-        <BaseButton @click="openAddModal" variant="primary">
-          {{ t('qos.addRule') }}
-        </BaseButton>
-      </div>
+      <div class="panel-section panel-section--light">
+        <div class="card-content">
+          <div class="rule-header">
+            <h3>{{ t('qos.qosRuleLists') }}</h3>
+            <BaseButton @click="openAddModal" variant="primary">
+              {{ t('qos.addRule') }}
+            </BaseButton>
+          </div>
 
-      <div class="rule-table-container">
+          <div class="rule-table-container">
         <table class="draggable-table">
           <thead>
             <tr>
@@ -65,6 +67,8 @@
           {{ t('common.apply') }}
         </BaseButton>
       </div>
+        </div> <!-- .card-content -->
+      </div> <!-- .panel-section -->
     </BaseCard>
 
     <BaseModal

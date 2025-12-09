@@ -1,7 +1,8 @@
 <template>
   <div class="qos-bandwidth-tab">
     <BaseCard>
-      <div class="form-section">
+      <div class="panel-section panel-section--light">
+        <div class="card-content">
         <div class="form-row enable-row">
           <label class="form-label">{{ t('qos.enableQos') }}</label>
           <label class="switch">
@@ -213,7 +214,8 @@
             {{ t('common.apply') }}
           </BaseButton>
         </div>
-      </div>
+        </div> <!-- .card-content -->
+      </div> <!-- .panel-section -->
     </BaseCard>
   </div>
 </template>
@@ -399,7 +401,7 @@ onMounted(() => {
 .priority-table td {
   padding: 12px;
   text-align: left;
-  border: 1px solid var(--border-color, #e5e7eb);
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
 }
 
 .priority-table th {

@@ -177,3 +177,31 @@
    border-radius: 4px;
    z-index: 100;
  }
+
+ /* Lightweight panel section used for band-like sections (e.g. WLAN Basic, QoS).
+  * Provides a neutral background, subtle border, and consistent padding when
+  * combined with .card-content.
+  *
+  * Usage:
+  *   <div class="panel-section panel-section--light">
+  *     <div class="section-title">Title</div>
+  *     <div class="card-content">
+  *       ...
+  *     </div>
+  *   </div>
+  */
+ .panel-section--light {
+   background-color: var(--bg-secondary);
+   border: 1px solid var(--border-color);
+   border-radius: 4px;
+   box-shadow: var(--shadow-sm);
+ }
+
+ .panel-section--light .section-title {
+   background-color: var(--bg-tertiary);
+   border-bottom: 1px solid var(--border-color);
+ }
+
+ .panel-section--light .card-content {
+   padding: 1.5rem;
+ }
