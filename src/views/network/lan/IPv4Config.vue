@@ -299,7 +299,7 @@ onMounted(fetchLanBasic);
         <div class="card-content" :data-testid="qa('ipv4-configuration-lan-ip-content')">
           <div class="form-group">
             <div class="switch-label">
-              <span :data-testid="qa('ipv4-configuration-lan-ip-enable-label')">{{ t('lanBasic.enable') }}</span>
+              <span class="form-label" :data-testid="qa('ipv4-configuration-lan-ip-enable-label')">{{ t('lanBasic.enable') }}</span>
               <label class="switch">
                 <input
                   type="checkbox"
@@ -314,9 +314,10 @@ onMounted(fetchLanBasic);
           </div>
 
           <div class="form-group">
-            <label :data-testid="qa('ipv4-configuration-lan-ip-address-label')">{{ t('lanBasic.ipAddress') }}</label>
+            <label class="form-label" :data-testid="qa('ipv4-configuration-lan-ip-address-label')">{{ t('lanBasic.ipAddress') }}</label>
             <input
               type="text"
+              class="form-input"
               :data-testid="qa('ipv4-configuration-lan-ip-address-input')"
               :value="lanData.LanBasic.LANIPSetting.IPAddress"
               @input="handleIPInput($event, 'lanIP')"
@@ -326,9 +327,10 @@ onMounted(fetchLanBasic);
           </div>
 
           <div class="form-group">
-            <label :data-testid="qa('ipv4-configuration-lan-ip-subnet-mask-label')">{{ t('lanBasic.subnetMask') }}</label>
+            <label class="form-label" :data-testid="qa('ipv4-configuration-lan-ip-subnet-mask-label')">{{ t('lanBasic.subnetMask') }}</label>
             <input
               type="text"
+              class="form-input"
               :data-testid="qa('ipv4-configuration-lan-ip-subnet-mask-input')"
               v-model="lanData.LanBasic.LANIPSetting.SubnetMask"
               :disabled="!lanData.LanBasic.LANIPSetting.Enable"
@@ -344,7 +346,7 @@ onMounted(fetchLanBasic);
         <div class="card-content" :data-testid="qa('ipv4-configuration-dhcp-content')">
           <div class="form-group">
             <div class="switch-label">
-              <span :data-testid="qa('ipv4-configuration-dhcp-enable-label')">{{ t('lanBasic.enableDhcpServer') }}</span>
+              <span class="form-label" :data-testid="qa('ipv4-configuration-dhcp-enable-label')">{{ t('lanBasic.enableDhcpServer') }}</span>
               <label class="switch">
                 <input
                   type="checkbox"
@@ -359,9 +361,10 @@ onMounted(fetchLanBasic);
           </div>
 
           <div class="form-group">
-            <label :data-testid="qa('ipv4-configuration-dhcp-dns-server-label')">{{ t('lanBasic.dnsServer') }}</label>
+            <label class="form-label" :data-testid="qa('ipv4-configuration-dhcp-dns-server-label')">{{ t('lanBasic.dnsServer') }}</label>
             <input
               type="text"
+              class="form-input"
               :data-testid="qa('ipv4-configuration-dhcp-dns-server-input')"
               :value="lanData.LanBasic.DHCPv4Setting.DNSServers"
               @input="handleIPInput($event, 'dnsServer')"
@@ -371,9 +374,10 @@ onMounted(fetchLanBasic);
           </div>
 
           <div class="form-group">
-            <label :data-testid="qa('ipv4-configuration-dhcp-begin-address-label')">{{ t('lanBasic.beginAddress') }}</label>
+            <label class="form-label" :data-testid="qa('ipv4-configuration-dhcp-begin-address-label')">{{ t('lanBasic.beginAddress') }}</label>
             <input
               type="text"
+              class="form-input"
               :data-testid="qa('ipv4-configuration-dhcp-begin-address-input')"
               :value="lanData.LanBasic.DHCPv4Setting.BeginAddress"
               @input="handleIPInput($event, 'beginAddress')"
@@ -383,9 +387,10 @@ onMounted(fetchLanBasic);
           </div>
 
           <div class="form-group">
-            <label :data-testid="qa('ipv4-configuration-dhcp-end-address-label')">{{ t('lanBasic.endAddress') }}</label>
+            <label class="form-label" :data-testid="qa('ipv4-configuration-dhcp-end-address-label')">{{ t('lanBasic.endAddress') }}</label>
             <input
               type="text"
+              class="form-input"
               :data-testid="qa('ipv4-configuration-dhcp-end-address-input')"
               :value="lanData.LanBasic.DHCPv4Setting.EndAddress"
               @input="handleIPInput($event, 'endAddress')"
@@ -395,9 +400,10 @@ onMounted(fetchLanBasic);
           </div>
 
           <div class="form-group">
-            <label :data-testid="qa('ipv4-configuration-dhcp-subnet-mask-label')">{{ t('lanBasic.subnetMask') }}</label>
+            <label class="form-label" :data-testid="qa('ipv4-configuration-dhcp-subnet-mask-label')">{{ t('lanBasic.subnetMask') }}</label>
             <input
               type="text"
+              class="form-input"
               :data-testid="qa('ipv4-configuration-dhcp-subnet-mask-input')"
               v-model="lanData.LanBasic.DHCPv4Setting.SubnetMask"
               :disabled="!lanData.LanBasic.DHCPv4Setting.Enable"
@@ -406,17 +412,20 @@ onMounted(fetchLanBasic);
           </div>
 
           <div class="form-group">
-            <label :data-testid="qa('ipv4-configuration-dhcp-lease-time-label')">{{ t('lanBasic.leaseTime') }}</label>
-            <div class="input-with-unit" :data-testid="qa('ipv4-configuration-dhcp-lease-time-container')">
+            <label class="form-label" :data-testid="qa('ipv4-configuration-dhcp-lease-time-label')">{{ t('lanBasic.leaseTime') }}</label>
+            <div class="input-group" :data-testid="qa('ipv4-configuration-dhcp-lease-time-container')">
               <input
                 type="number"
+                class="form-input"
                 :data-testid="qa('ipv4-configuration-dhcp-lease-time-input')"
                 v-model="lanData.LanBasic.DHCPv4Setting.LeaseTime"
                 :disabled="!lanData.LanBasic.DHCPv4Setting.Enable"
                 min="300"
                 max="604800"
               />
-              <span class="unit" :data-testid="qa('ipv4-configuration-dhcp-lease-time-unit')">{{ t('lanBasic.seconds') }}</span>
+              <span class="input-group-append" :data-testid="qa('ipv4-configuration-dhcp-lease-time-unit')">
+                {{ t('lanBasic.seconds') }}
+              </span>
             </div>
           </div>
         </div>
@@ -449,6 +458,7 @@ onMounted(fetchLanBasic);
                     <input
                       v-if="editingIndex === resIndex"
                       type="text"
+                      class="form-input"
                       :data-testid="qa(`ipv4-configuration-reservation-mac-input-${resIndex}`)"
                       v-model="reservation.MACAddress"
                       placeholder="00:11:22:33:44:55"
@@ -459,6 +469,7 @@ onMounted(fetchLanBasic);
                     <input
                       v-if="editingIndex === resIndex"
                       type="text"
+                      class="form-input"
                       :data-testid="qa(`ipv4-configuration-reservation-ip-input-${resIndex}`)"
                       v-model="reservation.IPAddress"
                       placeholder="192.168.1.100"
@@ -512,11 +523,12 @@ onMounted(fetchLanBasic);
               :data-testid="qa(`ipv4-configuration-reservation-card-${resIndex}`)"
             >
               <div class="card-row">
-                <span class="card-label" :data-testid="qa(`ipv4-configuration-reservation-card-mac-label-${resIndex}`)">{{ t('lanBasic.macAddress') }}</span>
+                <span class="card-label form-label" :data-testid="qa(`ipv4-configuration-reservation-card-mac-label-${resIndex}`)">{{ t('lanBasic.macAddress') }}</span>
                 <span class="card-value">
                   <input
                     v-if="editingIndex === resIndex"
                     type="text"
+                    class="form-input"
                     :data-testid="qa(`ipv4-configuration-reservation-card-mac-input-${resIndex}`)"
                     v-model="reservation.MACAddress"
                     placeholder="00:11:22:33:44:55"
@@ -525,11 +537,12 @@ onMounted(fetchLanBasic);
                 </span>
               </div>
               <div class="card-row">
-                <span class="card-label" :data-testid="qa(`ipv4-configuration-reservation-card-ip-label-${resIndex}`)">{{ t('lanBasic.ipAddress') }}</span>
+                <span class="card-label form-label" :data-testid="qa(`ipv4-configuration-reservation-card-ip-label-${resIndex}`)">{{ t('lanBasic.ipAddress') }}</span>
                 <span class="card-value">
                   <input
                     v-if="editingIndex === resIndex"
                     type="text"
+                    class="form-input"
                     :data-testid="qa(`ipv4-configuration-reservation-card-ip-input-${resIndex}`)"
                     v-model="reservation.IPAddress"
                     placeholder="192.168.1.100"

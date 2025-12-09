@@ -89,8 +89,13 @@ onMounted(fetchInterfaces);
   <div class="dns-lookup-tool panel-inline" :data-testid="qa('dns-lookup-tool-content')">
     <form @submit.prevent="handleDNSLookup" :data-testid="qa('dns-lookup-tool-form')">
       <div class="form-group">
-        <label :data-testid="qa('dns-lookup-tool-interface-label')">{{ t('diagnostics.interface') }}</label>
-        <select v-model="selectedInterface" :data-testid="qa('dns-lookup-tool-interface-select')" required>
+        <label class="form-label" :data-testid="qa('dns-lookup-tool-interface-label')">{{ t('diagnostics.interface') }}</label>
+        <select
+          v-model="selectedInterface"
+          class="form-select"
+          :data-testid="qa('dns-lookup-tool-interface-select')"
+          required
+        >
           <option v-for="iface in interfaces" :key="iface.Interface" :value="iface.Interface" :data-testid="qa(`dns-lookup-tool-interface-option-${slug(iface.Name)}`)">
             {{ iface.Name }}
           </option>
@@ -98,13 +103,25 @@ onMounted(fetchInterfaces);
       </div>
 
       <div class="form-group">
-        <label :data-testid="qa('dns-lookup-tool-dns-server-label')">{{ t('diagnostics.dnsServer') }}</label>
-        <input type="text" v-model="dnsServer" :data-testid="qa('dns-lookup-tool-dns-server-input')" required />
+        <label class="form-label" :data-testid="qa('dns-lookup-tool-dns-server-label')">{{ t('diagnostics.dnsServer') }}</label>
+        <input
+          type="text"
+          v-model="dnsServer"
+          class="form-input"
+          :data-testid="qa('dns-lookup-tool-dns-server-input')"
+          required
+        />
       </div>
 
       <div class="form-group">
-        <label :data-testid="qa('dns-lookup-tool-target-host-label')">{{ t('diagnostics.targetHost') }}</label>
-        <input type="text" v-model="targetHost" :data-testid="qa('dns-lookup-tool-target-host-input')" required />
+        <label class="form-label" :data-testid="qa('dns-lookup-tool-target-host-label')">{{ t('diagnostics.targetHost') }}</label>
+        <input
+          type="text"
+          v-model="targetHost"
+          class="form-input"
+          :data-testid="qa('dns-lookup-tool-target-host-input')"
+          required
+        />
       </div>
 
       <div class="button-group">

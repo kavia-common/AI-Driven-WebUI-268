@@ -133,8 +133,13 @@ onMounted(fetchInterfaces);
   <div class="traceroute-tool panel-inline" :data-testid="qa('traceroute-tool-content')">
     <form @submit.prevent="handleTraceRoute" :data-testid="qa('traceroute-tool-form')">
       <div class="form-group">
-        <label :data-testid="qa('traceroute-tool-interface-label')">{{ t('diagnostics.interface') }}</label>
-        <select v-model="selectedInterface" :data-testid="qa('traceroute-tool-interface-select')" required>
+        <label class="form-label" :data-testid="qa('traceroute-tool-interface-label')">{{ t('diagnostics.interface') }}</label>
+        <select
+          v-model="selectedInterface"
+          class="form-select"
+          :data-testid="qa('traceroute-tool-interface-select')"
+          required
+        >
           <option v-for="iface in interfaces" :key="iface.Interface" :value="iface.Interface" :data-testid="qa(`traceroute-tool-interface-option-${slug(iface.Name)}`)">
             {{ iface.Name }}
           </option>
@@ -142,16 +147,27 @@ onMounted(fetchInterfaces);
       </div>
 
       <div class="form-group">
-        <label :data-testid="qa('traceroute-tool-protocol-label')">{{ t('diagnostics.protocol') }}</label>
-        <select v-model="protocolVersion" :data-testid="qa('traceroute-tool-protocol-select')" required>
+        <label class="form-label" :data-testid="qa('traceroute-tool-protocol-label')">{{ t('diagnostics.protocol') }}</label>
+        <select
+          v-model="protocolVersion"
+          class="form-select"
+          :data-testid="qa('traceroute-tool-protocol-select')"
+          required
+        >
           <option value="IPv4">IPv4</option>
           <option value="IPv6">IPv6</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label :data-testid="qa('traceroute-tool-target-host-label')">{{ t('diagnostics.targetHost') }}</label>
-        <input type="text" v-model="targetHost" :data-testid="qa('traceroute-tool-target-host-input')" required />
+        <label class="form-label" :data-testid="qa('traceroute-tool-target-host-label')">{{ t('diagnostics.targetHost') }}</label>
+        <input
+          type="text"
+          v-model="targetHost"
+          class="form-input"
+          :data-testid="qa('traceroute-tool-target-host-input')"
+          required
+        />
       </div>
 
       <div class="button-group">
