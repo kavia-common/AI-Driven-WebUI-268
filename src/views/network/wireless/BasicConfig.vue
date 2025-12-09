@@ -306,6 +306,7 @@ onMounted(fetchBasicConfig);
   position: relative;
 }
 
+/* Local overlay/success feedback remain specific to this view */
 .loading-overlay {
   position: absolute;
   top: 0;
@@ -371,14 +372,14 @@ onMounted(fetchBasicConfig);
   100% { opacity: 0; transform: translateY(-20px); }
 }
 
+/* Layout spacing for stack of WLAN panels */
 .band-sections {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-
-
+/* Small header used inside Common SSID band so visual stays aligned with band-config */
 .band-header {
   display: flex;
   justify-content: space-between;
@@ -390,6 +391,7 @@ onMounted(fetchBasicConfig);
   color: var(--text-primary);
 }
 
+/* Form/layout helpers – align with utilities.css but scoped for this view */
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -456,6 +458,7 @@ input:disabled + .slider {
   opacity: 0.5;
 }
 
+/* Switch styles – mirror global utilities but scoped here to avoid conflicts */
 .switch-label {
   display: flex;
   justify-content: space-between;
@@ -485,7 +488,7 @@ input:disabled + .slider {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 34px;
 }
 
@@ -497,7 +500,7 @@ input:disabled + .slider {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 50%;
 }
 
@@ -509,57 +512,17 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-.section-title {
-  padding: 1rem 1.5rem;
-  font-size: 1rem;
-  color: var(--text-primary);
-  background-color: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.card-content {
-  padding: 1.5rem;
-}
-
+/* Buttons row – use spacing only; visual button styles come from global .btn classes */
 .button-group {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
-  padding: 1rem 1.5rem;
-}
-
-.btn {
-  padding: 0.5rem 1.5rem;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: opacity 0.2s;
-}
-
-.btn:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.btn-primary {
-  background-color: #0070BB;
-  color: white;
-}
-
-.btn-secondary {
-  background-color: #f0f0f0;
-  color: #666;
-}
-
-.btn:not(:disabled):hover {
-  opacity: 0.9;
+  margin-top: 1.5rem;
 }
 
 @media (max-width: 768px) {
   .button-group {
     flex-direction: column;
-    padding: 1rem;
   }
 
   .button-group .btn {

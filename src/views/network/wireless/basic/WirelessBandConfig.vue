@@ -30,12 +30,23 @@ const updateConfig = (field: keyof WlanBasicConfig, value: string | number) => {
 </script>
 
 <template>
-  <div class="band-config" :data-testid="qa(`wireless-band-config-${slug(title)}`)">
+  <div
+    class="panel-section panel-section--light band-config"
+    :data-testid="qa(`wireless-band-config-${slug(title)}`)"
+  >
     <div class="band-header">
-      <div class="section-title-sp" :data-testid="qa(`wireless-band-config-title-${slug(title)}`)">{{ title }} {{ t('wireless.settings') }}</div>
+      <div
+        class="section-title-sp"
+        :data-testid="qa(`wireless-band-config-title-${slug(title)}`)"
+      >
+        {{ title }} {{ t('wireless.settings') }}
+      </div>
     </div>
 
-    <div class="band-content" :data-testid="qa(`wireless-band-config-content-${slug(title)}`)">
+    <div
+      class="band-content card-content"
+      :data-testid="qa(`wireless-band-config-content-${slug(title)}`)"
+    >
       <!-- Only show Enable toggle for individual bands, not for MLO -->
       <div class="form-group" v-if="title !== 'MLO'">
         <div class="switch-label">
@@ -106,10 +117,7 @@ const updateConfig = (field: keyof WlanBasicConfig, value: string | number) => {
 
 <style scoped>
 .band-config {
-  background-color: white;
-  border-radius: 4px;
   margin-bottom: 1.5rem;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
 }
 
 .band-config:last-child {

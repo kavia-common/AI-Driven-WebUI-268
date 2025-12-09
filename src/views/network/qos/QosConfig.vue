@@ -3,7 +3,7 @@
     <h1 class="page-title">{{ t('qos.title') }}</h1>
 
     <div class="status-content">
-      <div class="panel-section">
+      <div class="panel-section panel-section--light">
         <div class="tab-navigation">
           <button
             v-for="tab in tabs"
