@@ -130,7 +130,8 @@ const handleCancel = () => {
   <div class="page-container">
     <h1 class="page-title">{{ t('menu.cellular') }}</h1>
 
-    <BaseCard>
+    <div class="card-margin-2rem">
+      <BaseCard>
       <!-- No header/title; NTP style uses body-only content -->
       <div v-if="loading" class="card-content">
         <div class="loading-state">
@@ -199,33 +200,34 @@ const handleCancel = () => {
               />
             </div>
           </div>
-        </div>
-      </template>
 
-      <template #footer>
-        <div class="card-footer-actions">
-          <BaseButton variant="ghost" @click="handleCancel">
-            {{ t('common.cancel') }}
-          </BaseButton>
-          <BaseButton
-            variant="primary"
-            :disabled="disabledSave"
-            :loading="saving"
-            @click="handleSave"
-          >
-            {{ t('common.save') }}
-          </BaseButton>
+          <!-- Moved action buttons into the card-content area like NTP -->
+          <div class="button-group">
+            <BaseButton variant="ghost" @click="handleCancel">
+              {{ t('common.cancel') }}
+            </BaseButton>
+            <BaseButton
+              variant="primary"
+              :disabled="disabledSave"
+              :loading="saving"
+              @click="handleSave"
+            >
+              {{ t('ntp.apply') || 'Apply' }}
+            </BaseButton>
+          </div>
         </div>
       </template>
-    </BaseCard>
+      </BaseCard>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.card-footer-actions {
+.button-group {
   display: flex;
   justify-content: flex-end;
-  gap: var(--space-3);
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .alert {
@@ -257,5 +259,9 @@ const handleCancel = () => {
   justify-content: space-between;
   align-items: center;
   color: var(--text-primary);
+}
+
+.card-margin-2rem {
+  margin: 2rem;
 }
 </style>
