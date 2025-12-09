@@ -86,7 +86,7 @@ onMounted(fetchInterfaces);
 </script>
 
 <template>
-  <div class="dns-lookup-tool" :data-testid="qa('dns-lookup-tool-content')">
+  <div class="dns-lookup-tool panel-inline" :data-testid="qa('dns-lookup-tool-content')">
     <form @submit.prevent="handleDNSLookup" :data-testid="qa('dns-lookup-tool-form')">
       <div class="form-group">
         <label :data-testid="qa('dns-lookup-tool-interface-label')">{{ t('diagnostics.interface') }}</label>
@@ -114,7 +114,7 @@ onMounted(fetchInterfaces);
       </div>
     </form>
 
-    <div v-if="error" class="error-message" :data-testid="qa('dns-lookup-tool-error')">
+    <div v-if="error" class="error-state" :data-testid="qa('dns-lookup-tool-error')">
       {{ error }}
     </div>
 
@@ -157,7 +157,7 @@ onMounted(fetchInterfaces);
       </div>
 
       <!-- Show processing state -->
-      <div v-else class="processing-state" :data-testid="qa('dns-lookup-tool-results-processing')">
+      <div v-else class="processing-state loading-state" :data-testid="qa('dns-lookup-tool-results-processing')">
         <div class="loading-spinner"></div>
         <span>{{ t('diagnostics.processing') }}</span>
       </div>
@@ -167,40 +167,7 @@ onMounted(fetchInterfaces);
 
 <style scoped>
 .dns-lookup-tool {
-  padding: 1.5rem;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--text-primary);
-}
-
-select, input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-size: 0.9rem;
-}
-
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.error-message {
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: #fee;
-  color: #dc3545;
-  border-radius: 4px;
+  padding: 0;
 }
 
 .results-section {
@@ -247,54 +214,13 @@ select, input {
 }
 
 .processing-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-  background-color: var(--bg-secondary);
-  border-radius: 4px;
-  color: var(--text-secondary);
-}
-
-.loading-spinner {
-  width: 24px;
-  height: 24px;
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid var(--primary-color);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-.error-state {
-  padding: 1rem;
-  background-color: #fee;
-  color: #dc3545;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  margin-top: 1rem;
 }
 
 @media (max-width: 768px) {
-  .dns-lookup-tool {
-    padding: 1rem;
-  }
-
   .result-row {
     grid-template-columns: 1fr;
     gap: 0.25rem;
-  }
-
-  .button-group {
-    flex-direction: column;
-  }
-
-  .button-group .btn {
-    width: 100%;
   }
 }
 </style>

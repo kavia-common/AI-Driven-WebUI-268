@@ -127,7 +127,7 @@ const validateVLANPriority = (value: number) => {
 </script>
 
 <template>
-  <div class="wan-mode-edit" :data-testid="qa('wan-mode-edit-content')">
+  <div class="wan-mode-edit panel-inline" :data-testid="qa('wan-mode-edit-content')">
     <h2 :data-testid="qa('wan-mode-edit-title')">{{ mode?.WANMode ? t('wanManagement.editMode') : t('wanManagement.addMode') }}</h2>
 
     <form @submit.prevent="handleSave" :data-testid="qa('wan-mode-edit-form')">
@@ -394,32 +394,10 @@ const validateVLANPriority = (value: number) => {
 </template>
 
 <style scoped>
-.wan-mode-edit {
-  padding: 1.5rem;
-}
-
 h2 {
   margin: 0 0 1.5rem 0;
   font-size: 1.1rem;
   color: var(--text-primary);
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--text-primary);
-}
-
-input, select {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-size: 0.9rem;
 }
 
 input.readonly {
@@ -460,71 +438,7 @@ input.readonly {
   background: none;
 }
 
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.switch-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--text-primary);
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  flex-shrink: 0;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 34px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: var(--primary-color);
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
 @media (max-width: 768px) {
-  .wan-mode-edit {
-    padding: 1rem;
-  }
-
   .interface-section {
     padding: 1rem;
   }
@@ -536,14 +450,6 @@ input:checked + .slider:before {
 
   .static-section {
     padding: 1rem;
-  }
-
-  .button-group {
-    flex-direction: column;
-  }
-
-  .button-group .btn {
-    width: 100%;
   }
 }
 </style>

@@ -259,7 +259,7 @@ onMounted(fetchManagementData);
       />
     </template>
 
-    <div v-if="showSuccess" class="success-message" :data-testid="qa('wan-mode-management-success-message')">
+    <div v-if="showSuccess" class="toast-success" :data-testid="qa('wan-mode-management-success-message')">
       {{ t('common.apply') }} successful
     </div>
   </div>
@@ -312,48 +312,6 @@ onMounted(fetchManagementData);
   font-size: 1.25rem;
 }
 
-.loading-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-  color: var(--text-secondary);
-}
-
-.error-state {
-  padding: 2rem;
-  text-align: center;
-  color: #dc3545;
-}
-
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  padding: 1.5rem;
-  border-top: 1px solid var(--border-color);
-}
-
-.success-message {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #4caf50;
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  animation: fadeInOut 3s ease-in-out;
-  z-index: 100;
-}
-
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(-20px); }
-  10% { opacity: 1; transform: translateY(0); }
-  90% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-20px); }
-}
-
 @media (max-width: 768px) {
   .header-row {
     flex-direction: column;
@@ -377,13 +335,5 @@ onMounted(fetchManagementData);
     margin-top: 1rem;
   }
 
-  .button-group {
-    flex-direction: column;
-    padding: 1rem;
-  }
-
-  .button-group .btn {
-    width: 100%;
-  }
 }
 </style>

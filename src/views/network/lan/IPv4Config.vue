@@ -282,7 +282,7 @@ onMounted(fetchLanBasic);
 </script>
 
 <template>
-  <div class="ipv4-configuration" :data-testid="qa('ipv4-configuration-content')">
+  <div class="ipv4-configuration panel-inline" :data-testid="qa('ipv4-configuration-content')">
     <div v-if="loading" class="loading-state" :data-testid="qa('ipv4-configuration-loading')">
       <div class="loading-spinner"></div>
       <span>{{ t('common.loading') }}</span>
@@ -593,7 +593,7 @@ onMounted(fetchLanBasic);
       </div>
     </template>
 
-    <div v-if="showSuccess" class="success-message" :data-testid="qa('ipv4-configuration-success-message')">
+    <div v-if="showSuccess" class="toast-success" :data-testid="qa('ipv4-configuration-success-message')">
       {{ t('common.apply') }} successful
     </div>
   </div>
@@ -601,14 +601,7 @@ onMounted(fetchLanBasic);
 
 <style scoped>
 .ipv4-configuration {
-  padding: 1.5rem;
-}
-
-.panel-section {
-  background-color: white;
-  border-radius: 4px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+  padding: 0;
 }
 
 .section-title {
@@ -617,106 +610,6 @@ onMounted(fetchLanBasic);
   color: var(--text-primary);
   background-color: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
-}
-
-.section-title-sp {
-  font-size: 1rem;
-  color: var(--text-primary);
-  padding: 0.5rem 0;
-}
-
-.card-content {
-  padding: 1.5rem;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group:last-child {
-  margin-bottom: 0;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--text-primary);
-}
-
-.input-with-unit {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.unit {
-  color: var(--text-secondary);
-}
-
-input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-size: 0.9rem;
-}
-
-input:disabled {
-  background-color: var(--bg-secondary);
-  cursor: not-allowed;
-}
-
-.switch-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--text-primary);
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  flex-shrink: 0;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 34px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: var(--primary-color);
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
 }
 
 .header-row {
@@ -728,83 +621,9 @@ input:checked + .slider:before {
   border-bottom: 1px solid var(--border-color);
 }
 
-.btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.action-buttons {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.btn-action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.btn-action:hover {
-  background-color: var(--bg-secondary);
-  color: var(--text-primary);
-}
-
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.success-message {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #4caf50;
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  animation: fadeInOut 3s ease-in-out;
-  z-index: 100;
-}
-
-.loading-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: var(--shadow-sm);
-}
-
-.error-state {
-  padding: 2rem;
-  text-align: center;
-  color: #dc3545;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: var(--shadow-sm);
-}
-
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(-20px); }
-  10% { opacity: 1; transform: translateY(0); }
-  90% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-20px); }
-}
-
 @media (max-width: 768px) {
   .ipv4-configuration {
-    padding: 1rem;
+    padding: 0;
   }
 
   .header-row {
@@ -816,14 +635,6 @@ input:checked + .slider:before {
   .btn {
     width: 100%;
     justify-content: center;
-  }
-
-  .button-group {
-    flex-direction: column;
-  }
-
-  .button-group .btn {
-    width: 100%;
   }
 
   .table-container {

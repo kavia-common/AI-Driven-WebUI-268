@@ -38,10 +38,10 @@ const vlanTypeDisplay = {
 </script>
 
 <template>
-  <div class="wan-mode-detail" :data-testid="qa('wan-mode-detail-content')">
+  <div class="wan-mode-detail panel-inline" :data-testid="qa('wan-mode-detail-content')">
     <div class="panel-section" :data-testid="qa('wan-mode-detail-panel')">
       <div class="section-title" :data-testid="qa('wan-mode-detail-title')">{{ mode.WANMode }}</div>
-      
+
       <div class="card-content">
         <div class="cards-grid" :data-testid="qa('wan-mode-detail-cards-grid')">
           <div 
@@ -170,10 +170,6 @@ const vlanTypeDisplay = {
 </template>
 
 <style scoped>
-.wan-mode-detail {
-  padding: 1.5rem;
-}
-
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -246,27 +242,9 @@ const vlanTypeDisplay = {
   border-top: 1px solid var(--border-color);
 }
 
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 2rem;
-}
-
 @media (max-width: 768px) {
-  .wan-mode-detail {
-    padding: 1rem;
-  }
-
   .cards-grid {
     grid-template-columns: 1fr;
-  }
-
-  .button-group {
-    flex-direction: column;
-  }
-
-  .button-group .btn {
-    width: 100%;
   }
 }
 </style>

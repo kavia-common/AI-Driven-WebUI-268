@@ -92,7 +92,7 @@ onMounted(fetchAdvancedConfig);
         <div class="loading-spinner"></div>
       </div>
 
-      <div v-if="showSuccess" class="success-message" :data-testid="qa('wireless-advanced-config-success-message')">
+      <div v-if="showSuccess" class="toast-success" :data-testid="qa('wireless-advanced-config-success-message')">
         {{ t('common.apply') }} successful
       </div>
 
@@ -167,27 +167,6 @@ onMounted(fetchAdvancedConfig);
   z-index: 10;
 }
 
-.loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #0070BB;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-.success-message {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #4caf50;
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  animation: fadeInOut 3s ease-in-out;
-  z-index: 100;
-}
-
 .mlo-status {
   margin-bottom: 1.5rem;
 }
@@ -207,58 +186,10 @@ onMounted(fetchAdvancedConfig);
   font-size: 1.25rem;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(-20px); }
-  10% { opacity: 1; transform: translateY(0); }
-  90% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-20px); }
-}
-
 .band-sections {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   padding: 1.5rem;
-}
-
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
-  border-top: 1px solid #e0e0e0;
-}
-
-.btn {
-  padding: 0.5rem 1.5rem;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: opacity 0.2s;
-}
-
-.btn:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.btn-primary {
-  background-color: #0070BB;
-  color: white;
-}
-
-.btn-secondary {
-  background-color: #f0f0f0;
-  color: #666;
-}
-
-.btn:not(:disabled):hover {
-  opacity: 0.9;
 }
 </style>
