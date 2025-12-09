@@ -179,8 +179,11 @@
  }
 
  /* Lightweight panel section used for band-like sections (e.g. WLAN Basic, QoS).
-  * Provides a neutral background, subtle border, and consistent padding when
-  * combined with .card-content.
+  * This is aligned to the visual style of the wireless band-config cards:
+  * - white background
+  * - 1px neutral border
+  * - 4px radius
+  * - subtle small shadow (same as cards)
   *
   * Usage:
   *   <div class="panel-section panel-section--light">
@@ -189,16 +192,19 @@
   *       ...
   *     </div>
   *   </div>
+  *
+  * NOTE: Padding is still provided by .card-content to avoid double padding
+  * when nested inside other card-like layouts.
   */
  .panel-section--light {
-   background-color: var(--bg-secondary);
+   background-color: #ffffff;
    border: 1px solid var(--border-color);
    border-radius: 4px;
    box-shadow: var(--shadow-sm);
  }
 
  .panel-section--light .section-title {
-   background-color: var(--bg-tertiary);
+   background-color: #ffffff;
    border-bottom: 1px solid var(--border-color);
  }
 

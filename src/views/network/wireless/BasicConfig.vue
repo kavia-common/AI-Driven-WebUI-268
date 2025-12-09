@@ -303,8 +303,6 @@ onMounted(fetchBasicConfig);
 
 <style scoped>
 .wireless-basic-config {
-  background-color: white;
-  border-radius: 4px;
   position: relative;
 }
 
@@ -377,7 +375,6 @@ onMounted(fetchBasicConfig);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 1.5rem;
 }
 
 
@@ -386,20 +383,11 @@ onMounted(fetchBasicConfig);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.4rem 1.5rem;
-  background-color: white;
-  border-bottom: 1px solid var(--border-color);
 }
 
 .section-title-sp {
   font-size: 1rem;
   color: var(--text-primary);
-  padding: 0.5rem 0rem;
-  background-color: white;
-}
-
-.band-content {
-  padding: 0; /* spacing is now driven by .card-content for consistency */
 }
 
 .form-group {
@@ -569,14 +557,6 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 768px) {
-  .band-sections {
-    padding: 1rem;
-  }
-  
-  .card-content {
-    padding: 1rem;
-  }
-
   .button-group {
     flex-direction: column;
     padding: 1rem;
