@@ -56,16 +56,18 @@ function normalizeCellularPayload(payload: {
  * Update cellular settings on the backend.
  * POST /API/info?list=Cellular
  *
- * Payload shape:
+ * Payload shape (must match exactly the following keys):
  * {
- *   Cellular: {
- *     RoamingEnabled: boolean|number,
- *     InterfaceEnable: boolean|number,
- *     X_PRPLWARE_COM_IPType: string,
- *     APN: string,
- *     PreferredAccessTechnology: string
+ *   "Cellular": {
+ *     "RoamingEnabled": boolean|number,         // will be normalized to 1/0 if boolean
+ *     "InterfaceEnable": boolean|number,        // will be normalized to 1/0 if boolean
+ *     "X_PRPLWARE_COM_IPType": string,          // e.g., "ipv4v6"
+ *     "APN": string,                            // e.g., "internet"
+ *     "PreferredAccessTechnology": string       // e.g., "5g"
  *   }
  * }
+ *
+ * Note: Booleans are converted to numeric flags (1/0) for backend compatibility.
  *
  * Returns:
  *  - CellularResponse: updated cellular info from backend after applying settings
