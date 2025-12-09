@@ -1,17 +1,35 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
+// PUBLIC_INTERFACE
+/**
+ * Vite configuration for Vue 3 + TS.
+ * - Binds server to all hosts (host: true) for preview runner compatibility.
+ * - Uses VITE_PORT env (fallback 3000) and allows override via CLI --port/--host.
+ * - Keeps allowedHosts for preview environments.
+ */
 export default defineConfig({
   plugins: [vue()],
+  resolve: {
+    alias: {
+      // Preserve common @ alias used in Vue + TS projects if referenced
+      '@': '/src',
+    },
+  },
   server: {
-    // 如果原本就有 host/port，就一起放進來
-    // host: '0.0.0.0',
+    host: true, // allows 0.0.0.0 binding and external access
+    port: Number(process.env.VITE_PORT || 3000),
+    strictPort: false, // allow preview system to pass a different --port if needed
     allowedHosts: [
-      // 只開給 Kavia 的預覽網域
       '.cloud.kavia.ai',
-      // 或照錯誤訊息寫死整個 host 也可以：
-      // 'vscode-internal-15668-beta.beta01.cloud.kavia.ai',
+    ],
+  },
+  preview: {
+    host: true,
+    port: Number(process.env.VITE_PORT || 3000),
+    strictPort: false,
+    allowedHosts: [
+      '.cloud.kavia.ai',
     ],
   },
 })
