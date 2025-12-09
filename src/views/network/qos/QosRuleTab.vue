@@ -1,8 +1,8 @@
 <template>
   <div class="qos-rule-tab">
     <BaseCard>
-      <div class="panel-section panel-section--light">
-        <div class="card-content">
+      <div class="panel-section panel-band">
+        <div class="panel-band__content card-content">
           <div class="rule-header">
             <h3>{{ t('qos.qosRuleLists') }}</h3>
             <BaseButton @click="openAddModal" variant="primary">

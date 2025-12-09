@@ -1,8 +1,8 @@
 <template>
   <div class="qos-bandwidth-tab">
     <BaseCard>
-      <div class="panel-section panel-section--light">
-        <div class="card-content">
+      <div class="panel-section panel-band">
+        <div class="panel-band__content card-content">
         <div class="form-row enable-row">
           <label class="form-label">{{ t('qos.enableQos') }}</label>
           <label class="switch">

@@ -31,12 +31,12 @@ const updateConfig = (field: keyof WlanBasicConfig, value: string | number) => {
 
 <template>
   <div
-    class="panel-section panel-section--light band-config"
+    class="panel-section panel-band band-config"
     :data-testid="qa(`wireless-band-config-${slug(title)}`)"
   >
-    <div class="band-header">
+    <div class="panel-band__header">
       <div
-        class="section-title-sp"
+        class="panel-band__title"
         :data-testid="qa(`wireless-band-config-title-${slug(title)}`)"
       >
         {{ title }} {{ t('wireless.settings') }}
@@ -44,7 +44,7 @@ const updateConfig = (field: keyof WlanBasicConfig, value: string | number) => {
     </div>
 
     <div
-      class="band-content card-content"
+      class="panel-band__content card-content"
       :data-testid="qa(`wireless-band-config-content-${slug(title)}`)"
     >
       <!-- Only show Enable toggle for individual bands, not for MLO -->
@@ -122,26 +122,6 @@ const updateConfig = (field: keyof WlanBasicConfig, value: string | number) => {
 
 .band-config:last-child {
   margin-bottom: 0;
-}
-
-.band-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.4rem 1.5rem;
-  background-color: white;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.section-title-sp {
-  font-size: 1rem;
-  color: var(--text-primary);
-  padding: 0.5rem 0rem;
-  background-color: white;
-}
-
-.band-content {
-  padding: 1.5rem;
 }
 
 .form-group {
@@ -254,14 +234,6 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 768px) {
-  .band-header {
-    padding: 1rem;
-  }
-
-  .band-content {
-    padding: 1rem;
-  }
-
   .form-group {
     margin-bottom: 1rem;
   }
