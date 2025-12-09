@@ -174,7 +174,6 @@ const handleCancel = () => {
                 :label="t('cellular.ipType') as string"
                 :options="ipTypeOptions"
                 :placeholder="t('common.placeholder') as string"
-                :help-text="t('cellular.ipTypeHelp') as string"
               />
             </div>
 
@@ -183,7 +182,6 @@ const handleCancel = () => {
                 v-model="formAPN"
                 :label="t('cellular.apn') as string"
                 :placeholder="t('common.placeholder') as string"
-                :help-text="t('cellular.apnHelp') as string"
               />
             </div>
 
@@ -193,7 +191,6 @@ const handleCancel = () => {
                 :label="t('cellular.preferredAccessTechnology') as string"
                 :options="preferredAccessTechOptions"
                 :placeholder="t('common.placeholder') as string"
-                :help-text="t('cellular.preferredAccessTechnologyHelp') as string"
               />
             </div>
 
