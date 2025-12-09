@@ -5,9 +5,11 @@ import vue from '@vitejs/plugin-vue'
 /**
  * Vite configuration for Vue 3 + TS.
  * - Binds server to all hosts (host: true) for preview runner compatibility.
- * - Uses VITE_PORT env (fallback 3000) and allows override via CLI --port/--host.
- * - Keeps allowedHosts for preview environments.
+ * - Uses PORT or VITE_PORT env (fallback 3000) and allows override via CLI --port/--host.
+ * - Removes allowedHosts restrictions to avoid blocking in CI/preview.
  */
+const PORT = Number(process.env.PORT || process.env.VITE_PORT || 3000)
+
 export default defineConfig({
   plugins: [vue()],
   resolve: {
@@ -17,19 +19,13 @@ export default defineConfig({
     },
   },
   server: {
-    host: true, // allows 0.0.0.0 binding and external access
-    port: Number(process.env.VITE_PORT || 3000),
+    host: true, // 0.0.0.0 binding and external access
+    port: PORT,
     strictPort: false, // allow preview system to pass a different --port if needed
-    allowedHosts: [
-      '.cloud.kavia.ai',
-    ],
   },
   preview: {
     host: true,
-    port: Number(process.env.VITE_PORT || 3000),
+    port: PORT,
     strictPort: false,
-    allowedHosts: [
-      '.cloud.kavia.ai',
-    ],
   },
 })
