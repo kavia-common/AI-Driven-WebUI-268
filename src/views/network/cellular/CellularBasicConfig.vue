@@ -149,56 +149,54 @@ const handleCancel = () => {
             {{ success }}
           </div>
 
-          <!-- Two-column form layout per forms.css -->
-          <div class="form-row form-row-2">
-            <div class="form-group">
-              <div class="switch-label">
-                <span>{{ t('cellular.interfaceEnable') }}</span>
-                <label class="form-switch">
-                  <input type="checkbox" v-model="formInterfaceEnable" />
-                  <span class="form-switch-slider"></span>
-                </label>
-              </div>
+          <!-- One-field-per-row layout, consistent with NTP section -->
+          <div class="form-group">
+            <div class="switch-label">
+              <span>{{ t('cellular.interfaceEnable') }}</span>
+              <label class="form-switch">
+                <input type="checkbox" v-model="formInterfaceEnable" />
+                <span class="form-switch-slider"></span>
+              </label>
             </div>
+          </div>
 
-            <div class="form-group">
-              <div class="switch-label">
-                <span>{{ t('cellular.roamingEnabled') }}</span>
-                <label class="form-switch">
-                  <input type="checkbox" v-model="formRoamingEnabled" />
-                  <span class="form-switch-slider"></span>
-                </label>
-              </div>
+          <div class="form-group">
+            <div class="switch-label">
+              <span>{{ t('cellular.roamingEnabled') }}</span>
+              <label class="form-switch">
+                <input type="checkbox" v-model="formRoamingEnabled" />
+                <span class="form-switch-slider"></span>
+              </label>
             </div>
+          </div>
 
-            <div class="form-group">
-              <BaseSelect
-                v-model="formIPType"
-                :label="t('cellular.ipType') as string"
-                :options="ipTypeOptions"
-                :placeholder="t('common.placeholder') as string"
-                :help-text="t('cellular.ipTypeHelp') as string"
-              />
-            </div>
+          <div class="form-group">
+            <BaseSelect
+              v-model="formIPType"
+              :label="t('cellular.ipType') as string"
+              :options="ipTypeOptions"
+              :placeholder="t('common.placeholder') as string"
+              :help-text="t('cellular.ipTypeHelp') as string"
+            />
+          </div>
 
-            <div class="form-group">
-              <BaseInput
-                v-model="formAPN"
-                :label="t('cellular.apn') as string"
-                :placeholder="t('common.placeholder') as string"
-                :help-text="t('cellular.apnHelp') as string"
-              />
-            </div>
+          <div class="form-group">
+            <BaseInput
+              v-model="formAPN"
+              :label="t('cellular.apn') as string"
+              :placeholder="t('common.placeholder') as string"
+              :help-text="t('cellular.apnHelp') as string"
+            />
+          </div>
 
-            <div class="form-group">
-              <BaseSelect
-                v-model="formPreferredAccessTechnology"
-                :label="t('cellular.preferredAccessTechnology') as string"
-                :options="preferredAccessTechOptions"
-                :placeholder="t('common.placeholder') as string"
-                :help-text="t('cellular.preferredAccessTechnologyHelp') as string"
-              />
-            </div>
+          <div class="form-group">
+            <BaseSelect
+              v-model="formPreferredAccessTechnology"
+              :label="t('cellular.preferredAccessTechnology') as string"
+              :options="preferredAccessTechOptions"
+              :placeholder="t('common.placeholder') as string"
+              :help-text="t('cellular.preferredAccessTechnologyHelp') as string"
+            />
           </div>
 
           <!-- Moved action buttons into the card-content area like NTP -->
