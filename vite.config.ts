@@ -41,9 +41,9 @@ export default defineConfig(({ mode }) => {
   const host = env.VITE_HOST || '0.0.0.0'
   const strictPort = env.VITE_STRICT_PORT ? env.VITE_STRICT_PORT === 'true' : true
 
-  // If VITE_PORT is provided, use it for dev. Preview defaults to dev+1 unless VITE_PREVIEW_PORT provided.
+  // Use env-driven ports for dev and preview with fallbacks
   const devPort = Number(env.VITE_PORT || 3000)
-  const previewPort = Number(env.VITE_PREVIEW_PORT || devPort + 1)
+  const previewPort = Number(env.VITE_PREVIEW_PORT || 4173)
 
   const logLevel = (env.VITE_LOG_LEVEL as any) || 'info'
   const healthPath = env.VITE_HEALTHCHECK_PATH || '/healthz'
