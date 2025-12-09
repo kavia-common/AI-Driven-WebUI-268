@@ -380,12 +380,7 @@ onMounted(fetchBasicConfig);
   padding: 1.5rem;
 }
 
-.panel-section {
-  background-color: white;
-  border-radius: 4px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
-}
+
 
 .band-header {
   display: flex;
