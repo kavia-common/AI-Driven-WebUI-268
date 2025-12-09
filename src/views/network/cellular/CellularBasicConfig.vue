@@ -153,46 +153,51 @@ const handleCancel = () => {
           {{ success }}
         </div>
 
-        <!-- Two-column grid using forms.css conventions -->
-        <div class="form-row form-row-2">
-          <div>
-            <BaseCheckbox
-              v-model="formInterfaceEnable"
-              :label="t('cellular.interfaceEnable') as string"
-            />
-          </div>
+        <!-- Use card-content wrapper and two-column grid for consistent spacing -->
+        <div class="card-content">
+          <div class="form-row form-row-2">
+            <div>
+              <BaseCheckbox
+                v-model="formInterfaceEnable"
+                :label="t('cellular.interfaceEnable') as string"
+              />
+            </div>
 
-          <div>
-            <BaseCheckbox
-              v-model="formRoamingEnabled"
-              :label="t('cellular.roamingEnabled') as string"
-            />
-          </div>
+            <div>
+              <BaseCheckbox
+                v-model="formRoamingEnabled"
+                :label="t('cellular.roamingEnabled') as string"
+              />
+            </div>
 
-          <div>
-            <BaseSelect
-              v-model="formIPType"
-              :label="t('cellular.ipType') as string"
-              :options="ipTypeOptions"
-              :placeholder="t('common.placeholder') as string"
-            />
-          </div>
+            <div>
+              <BaseSelect
+                v-model="formIPType"
+                :label="t('cellular.ipType') as string"
+                :options="ipTypeOptions"
+                :placeholder="t('common.placeholder') as string"
+                :help-text="t('cellular.ipTypeHelp') as string"
+              />
+            </div>
 
-          <div>
-            <BaseInput
-              v-model="formAPN"
-              :label="t('cellular.apn') as string"
-              :placeholder="t('common.placeholder') as string"
-            />
-          </div>
+            <div>
+              <BaseInput
+                v-model="formAPN"
+                :label="t('cellular.apn') as string"
+                :placeholder="t('common.placeholder') as string"
+                :help-text="t('cellular.apnHelp') as string"
+              />
+            </div>
 
-          <div>
-            <BaseSelect
-              v-model="formPreferredAccessTechnology"
-              :label="t('cellular.preferredAccessTechnology') as string"
-              :options="preferredAccessTechOptions"
-              :placeholder="t('common.placeholder') as string"
-            />
+            <div>
+              <BaseSelect
+                v-model="formPreferredAccessTechnology"
+                :label="t('cellular.preferredAccessTechnology') as string"
+                :options="preferredAccessTechOptions"
+                :placeholder="t('common.placeholder') as string"
+                :help-text="t('cellular.preferredAccessTechnologyHelp') as string"
+              />
+            </div>
           </div>
         </div>
       </template>
