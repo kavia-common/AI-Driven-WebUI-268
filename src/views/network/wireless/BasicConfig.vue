@@ -133,13 +133,9 @@ onMounted(fetchBasicConfig);
         </div>
 
         <!-- Common SSID Settings Section -->
-        <div class="panel-section panel-band" :data-testid="qa('wireless-basic-config-common-ssid-section')">
-          <div class="panel-band__header">
-            <div class="panel-band__title" :data-testid="qa('wireless-basic-config-common-ssid-title')">
-              {{ t('wireless.commonSsidSettings') }}
-            </div>
-          </div>
-          <div class="panel-band__content card-content" :data-testid="qa('wireless-basic-config-common-ssid-content')">
+        <div class="panel-section panel-section--light" :data-testid="qa('wireless-basic-config-common-ssid-section')">
+          <div class="section-title" :data-testid="qa('wireless-basic-config-common-ssid-title')">{{ t('wireless.commonSsidSettings') }}</div>
+          <div class="card-content" :data-testid="qa('wireless-basic-config-common-ssid-content')">
             <!-- Common SSID Enable Toggle -->
             <div class="form-group">
               <div class="switch-label">
@@ -161,13 +157,9 @@ onMounted(fetchBasicConfig);
         </div>
 
         <!-- MLO Settings Section -->
-        <div class="panel-section panel-band" :data-testid="qa('wireless-basic-config-mlo-section')">
-          <div class="panel-band__header">
-            <div class="panel-band__title" :data-testid="qa('wireless-basic-config-mlo-title')">
-              {{ t('wireless.mloSettings') }}
-            </div>
-          </div>
-          <div class="panel-band__content card-content" :data-testid="qa('wireless-basic-config-mlo-content')">
+        <div class="panel-section panel-section--light" :data-testid="qa('wireless-basic-config-mlo-section')">
+          <div class="section-title" :data-testid="qa('wireless-basic-config-mlo-title')">{{ t('wireless.mloSettings') }}</div>
+          <div class="card-content" :data-testid="qa('wireless-basic-config-mlo-content')">
             <!-- MLO Enable Toggle -->
             <div class="form-group">
               <div class="switch-label">
@@ -191,19 +183,14 @@ onMounted(fetchBasicConfig);
         <!-- Common SSID Band Settings Section (shown when Common SSID is enabled) -->
         <div
           v-if="wlanBasicData.WlanBasic.CommonSSIDEnable === 1"
-          class="panel-section panel-band"
+          class="panel-section panel-section--light"
           :data-testid="qa('wireless-basic-config-common-ssid-band-section')"
         >
-          <div class="panel-band__header">
-            <div
-              class="panel-band__title"
-              :data-testid="qa('wireless-basic-config-common-ssid-band-title')"
-            >
-              {{ t('wireless.commonSsidBandSettings') }}
-            </div>
+          <div class="band-header">
+            <div class="section-title-sp" :data-testid="qa('wireless-basic-config-common-ssid-band-title')">{{ t('wireless.commonSsidBandSettings') }}</div>
           </div>
-
-          <div class="panel-band__content card-content" :data-testid="qa('wireless-basic-config-common-ssid-band-content')">
+          
+          <div class="band-content card-content" :data-testid="qa('wireless-basic-config-common-ssid-band-content')">
             <div class="form-group">
               <div class="switch-label">
                 <span :data-testid="qa('wireless-basic-config-common-ssid-band-enable-label')">{{ t('common.enable') }}</span>
@@ -392,6 +379,18 @@ onMounted(fetchBasicConfig);
   gap: 1.5rem;
 }
 
+/* Small header used inside Common SSID band so visual stays aligned with band-config */
+.band-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-title-sp {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
 /* Form/layout helpers – align with utilities.css but scoped for this view */
 .form-group {
   margin-bottom: 1.5rem;
@@ -459,9 +458,59 @@ input:disabled + .slider {
   opacity: 0.5;
 }
 
-/* Switch styles – use shared utilities.css switch + switch-label classes.
- * No additional visual overrides here to keep panels consistent.
- */
+/* Switch styles – mirror global utilities but scoped here to avoid conflicts */
+.switch-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-primary);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
 
 /* Buttons row – use spacing only; visual button styles come from global .btn classes */
 .button-group {
