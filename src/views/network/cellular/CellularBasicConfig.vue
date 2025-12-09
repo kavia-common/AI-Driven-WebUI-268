@@ -3,7 +3,7 @@ import { ref, onMounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { getCellularStatus, updateCellularSettings } from '../../../services/api/cellular';
 import type { CellularResponse } from '../../../types/cellular';
-import { BaseInput, BaseSelect, BaseButton, BaseCard } from '../../../components/common';
+import { BaseInput, BaseSelect, BaseButton } from '../../../components/common';
 
 type PreferredAccessTechOption = { label: string; value: string };
 
@@ -130,92 +130,89 @@ const handleCancel = () => {
   <div class="page-container">
     <h1 class="page-title">{{ t('menu.cellular') }}</h1>
 
-    <div class="card-margin-2rem">
-      <BaseCard>
-      <!-- No header/title; NTP style uses body-only content -->
-      <div v-if="loading" class="card-content">
-        <div class="loading-state">
-          <div class="loading-spinner"></div>
-          <span>{{ t('common.loading') }}</span>
-        </div>
+    <div class="status-content">
+      <div v-if="loading" class="loading-state">
+        <div class="loading-spinner"></div>
+        <span>{{ t('common.loading') }}</span>
+      </div>
+
+      <div v-else-if="error" class="error-state" role="alert">
+        {{ error }}
       </div>
 
       <template v-else>
-        <div class="card-content">
-          <div v-if="error" class="alert alert-danger" role="alert">
-            {{ error }}
-          </div>
-          <div v-if="success" class="alert alert-success" role="status">
-            {{ success }}
-          </div>
-
-          <!-- One-field-per-row layout, consistent with NTP section -->
-          <div class="form-group">
-            <div class="switch-label">
-              <span>{{ t('cellular.interfaceEnable') }}</span>
-              <label class="form-switch">
-                <input type="checkbox" v-model="formInterfaceEnable" />
-                <span class="form-switch-slider"></span>
-              </label>
+        <div class="panel-section">
+          <div class="card-content">
+            <div v-if="success" class="alert alert-success" role="status">
+              {{ success }}
             </div>
-          </div>
 
-          <div class="form-group">
-            <div class="switch-label">
-              <span>{{ t('cellular.roamingEnabled') }}</span>
-              <label class="form-switch">
-                <input type="checkbox" v-model="formRoamingEnabled" />
-                <span class="form-switch-slider"></span>
-              </label>
+            <!-- One-field-per-row layout, consistent with NTP section -->
+            <div class="form-group">
+              <div class="switch-label">
+                <span>{{ t('cellular.interfaceEnable') }}</span>
+                <label class="form-switch">
+                  <input type="checkbox" v-model="formInterfaceEnable" />
+                  <span class="form-switch-slider"></span>
+                </label>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <BaseSelect
-              v-model="formIPType"
-              :label="t('cellular.ipType') as string"
-              :options="ipTypeOptions"
-              :placeholder="t('common.placeholder') as string"
-              :help-text="t('cellular.ipTypeHelp') as string"
-            />
-          </div>
+            <div class="form-group">
+              <div class="switch-label">
+                <span>{{ t('cellular.roamingEnabled') }}</span>
+                <label class="form-switch">
+                  <input type="checkbox" v-model="formRoamingEnabled" />
+                  <span class="form-switch-slider"></span>
+                </label>
+              </div>
+            </div>
 
-          <div class="form-group">
-            <BaseInput
-              v-model="formAPN"
-              :label="t('cellular.apn') as string"
-              :placeholder="t('common.placeholder') as string"
-              :help-text="t('cellular.apnHelp') as string"
-            />
-          </div>
+            <div class="form-group">
+              <BaseSelect
+                v-model="formIPType"
+                :label="t('cellular.ipType') as string"
+                :options="ipTypeOptions"
+                :placeholder="t('common.placeholder') as string"
+                :help-text="t('cellular.ipTypeHelp') as string"
+              />
+            </div>
 
-          <div class="form-group">
-            <BaseSelect
-              v-model="formPreferredAccessTechnology"
-              :label="t('cellular.preferredAccessTechnology') as string"
-              :options="preferredAccessTechOptions"
-              :placeholder="t('common.placeholder') as string"
-              :help-text="t('cellular.preferredAccessTechnologyHelp') as string"
-            />
-          </div>
+            <div class="form-group">
+              <BaseInput
+                v-model="formAPN"
+                :label="t('cellular.apn') as string"
+                :placeholder="t('common.placeholder') as string"
+                :help-text="t('cellular.apnHelp') as string"
+              />
+            </div>
 
-          <!-- Moved action buttons into the card-content area like NTP -->
-          <div class="button-group">
-            <BaseButton variant="ghost" @click="handleCancel">
-              {{ t('common.cancel') }}
-            </BaseButton>
-            <BaseButton
-              variant="primary"
-              :disabled="disabledSave"
-              :loading="saving"
-              @click="handleSave"
-            >
-              {{ t('ntp.apply') || 'Apply' }}
-            </BaseButton>
+            <div class="form-group">
+              <BaseSelect
+                v-model="formPreferredAccessTechnology"
+                :label="t('cellular.preferredAccessTechnology') as string"
+                :options="preferredAccessTechOptions"
+                :placeholder="t('common.placeholder') as string"
+                :help-text="t('cellular.preferredAccessTechnologyHelp') as string"
+              />
+            </div>
+
+            <div class="button-group">
+              <BaseButton variant="ghost" @click="handleCancel">
+                {{ t('common.cancel') }}
+              </BaseButton>
+              <BaseButton
+                variant="primary"
+                :disabled="disabledSave"
+                :loading="saving"
+                @click="handleSave"
+              >
+                {{ t('ntp.apply') || 'Apply' }}
+              </BaseButton>
+            </div>
           </div>
         </div>
       </template>
-      </BaseCard>
     </div>
   </div>
 </template>
@@ -246,6 +243,15 @@ const handleCancel = () => {
   border: 1px solid #badbcc;
 }
 
+.error-state {
+  padding: 2rem;
+  text-align: center;
+  color: #dc3545;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: var(--shadow-sm);
+}
+
 .loading-state {
   display: flex;
   align-items: center;
@@ -257,9 +263,5 @@ const handleCancel = () => {
   justify-content: space-between;
   align-items: center;
   color: var(--text-primary);
-}
-
-.card-margin-2rem {
-  margin: 2rem;
 }
 </style>
