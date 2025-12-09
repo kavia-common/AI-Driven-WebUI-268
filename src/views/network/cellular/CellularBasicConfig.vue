@@ -140,37 +140,39 @@ const handleCancel = () => {
         <p class="card-subtitle">{{ t('cellular.basicSubtitle') }}</p>
       </template>
 
-      <div v-if="loading" class="loading-state">
-        <div class="loading-spinner"></div>
-        <span>{{ t('common.loading') }}</span>
+      <div v-if="loading" class="card-content">
+        <div class="loading-state">
+          <div class="loading-spinner"></div>
+          <span>{{ t('common.loading') }}</span>
+        </div>
       </div>
 
       <template v-else>
-        <div v-if="error" class="alert alert-danger" role="alert">
-          {{ error }}
-        </div>
-        <div v-if="success" class="alert alert-success" role="status">
-          {{ success }}
-        </div>
-
-        <!-- Use card-content wrapper and two-column grid for consistent spacing -->
         <div class="card-content">
+          <div v-if="error" class="alert alert-danger" role="alert">
+            {{ error }}
+          </div>
+          <div v-if="success" class="alert alert-success" role="status">
+            {{ success }}
+          </div>
+
+          <!-- Standard two-column form grid -->
           <div class="form-row form-row-2">
-            <div>
+            <div class="form-group">
               <BaseCheckbox
                 v-model="formInterfaceEnable"
                 :label="t('cellular.interfaceEnable') as string"
               />
             </div>
 
-            <div>
+            <div class="form-group">
               <BaseCheckbox
                 v-model="formRoamingEnabled"
                 :label="t('cellular.roamingEnabled') as string"
               />
             </div>
 
-            <div>
+            <div class="form-group">
               <BaseSelect
                 v-model="formIPType"
                 :label="t('cellular.ipType') as string"
@@ -180,7 +182,7 @@ const handleCancel = () => {
               />
             </div>
 
-            <div>
+            <div class="form-group">
               <BaseInput
                 v-model="formAPN"
                 :label="t('cellular.apn') as string"
@@ -189,7 +191,7 @@ const handleCancel = () => {
               />
             </div>
 
-            <div>
+            <div class="form-group">
               <BaseSelect
                 v-model="formPreferredAccessTechnology"
                 :label="t('cellular.preferredAccessTechnology') as string"
@@ -203,7 +205,7 @@ const handleCancel = () => {
       </template>
 
       <template #footer>
-        <div class="footer-actions">
+        <div class="card-footer-actions">
           <BaseButton variant="ghost" @click="handleCancel">
             {{ t('common.cancel') }}
           </BaseButton>
@@ -222,16 +224,16 @@ const handleCancel = () => {
 </template>
 
 <style scoped>
-.footer-actions {
+.card-footer-actions {
   display: flex;
   justify-content: flex-end;
   gap: var(--space-3);
 }
 
 .alert {
-  padding: 0.75rem 1rem;
-  border-radius: 4px;
-  margin-bottom: 1rem;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
 }
 
 .alert-danger {
@@ -249,7 +251,6 @@ const handleCancel = () => {
 .loading-state {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: var(--space-4);
+  gap: var(--space-4);
 }
 </style>
