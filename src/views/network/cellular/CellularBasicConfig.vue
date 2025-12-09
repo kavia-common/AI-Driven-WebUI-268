@@ -3,7 +3,7 @@ import { ref, onMounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { getCellularStatus, updateCellularSettings } from '../../../services/api/cellular';
 import type { CellularResponse } from '../../../types/cellular';
-import { BaseCheckbox, BaseInput, BaseSelect, BaseButton } from '../../../components/common';
+import { BaseCheckbox, BaseInput, BaseSelect, BaseButton, BaseCard } from '../../../components/common';
 
 type PreferredAccessTechOption = { label: string; value: string };
 
@@ -123,104 +123,103 @@ const handleSave = async () => {
     saving.value = false;
   }
 };
+
+const handleCancel = () => {
+  // Reload original values from server
+  loadInitial();
+};
 </script>
 
 <template>
   <div class="page-container">
     <h1 class="page-title">{{ t('menu.cellular') }}</h1>
 
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">{{ t('cellular.basicInfo') }}</div>
+    <BaseCard>
+      <template #header>
+        <h3 class="card-title">{{ t('cellular.basicInfo') }}</h3>
+        <p class="card-subtitle">{{ t('cellular.basicSubtitle') }}</p>
+      </template>
+
+      <div v-if="loading" class="loading-state">
+        <div class="loading-spinner"></div>
+        <span>{{ t('common.loading') }}</span>
       </div>
 
-      <div class="card-content">
-        <div v-if="loading" class="loading-state">
-          <div class="loading-spinner"></div>
-          <span>{{ t('common.loading') }}</span>
+      <template v-else>
+        <div v-if="error" class="alert alert-danger" role="alert">
+          {{ error }}
+        </div>
+        <div v-if="success" class="alert alert-success" role="status">
+          {{ success }}
         </div>
 
-        <div v-else>
-          <div v-if="error" class="alert alert-danger" role="alert">
-            {{ error }}
-          </div>
-          <div v-if="success" class="alert alert-success" role="status">
-            {{ success }}
-          </div>
-
-          <div class="form-grid">
-            <div class="form-row">
-              <BaseCheckbox
-                v-model="formInterfaceEnable"
-                :label="t('cellular.interfaceEnable') as string"
-              />
-            </div>
-
-            <div class="form-row">
-              <BaseCheckbox
-                v-model="formRoamingEnabled"
-                :label="t('cellular.roamingEnabled') as string"
-              />
-            </div>
-
-            <div class="form-row">
-              <BaseSelect
-                v-model="formIPType"
-                :label="t('cellular.ipType') as string"
-                :options="ipTypeOptions"
-                :placeholder="t('common.placeholder') as string"
-              />
-            </div>
-
-            <div class="form-row">
-              <BaseInput
-                v-model="formAPN"
-                :label="t('cellular.apn') as string"
-                :placeholder="t('common.placeholder') as string"
-              />
-            </div>
-
-            <div class="form-row">
-              <BaseSelect
-                v-model="formPreferredAccessTechnology"
-                :label="t('cellular.preferredAccessTechnology') as string"
-                :options="preferredAccessTechOptions"
-                :placeholder="t('common.placeholder') as string"
-              />
-            </div>
+        <!-- Two-column grid using forms.css conventions -->
+        <div class="form-row form-row-2">
+          <div>
+            <BaseCheckbox
+              v-model="formInterfaceEnable"
+              :label="t('cellular.interfaceEnable') as string"
+            />
           </div>
 
-          <div class="actions">
-            <BaseButton
-              :disabled="disabledSave"
-              :loading="saving"
-              @click="handleSave"
-            >
-              {{ t('common.save') }}
-            </BaseButton>
+          <div>
+            <BaseCheckbox
+              v-model="formRoamingEnabled"
+              :label="t('cellular.roamingEnabled') as string"
+            />
+          </div>
+
+          <div>
+            <BaseSelect
+              v-model="formIPType"
+              :label="t('cellular.ipType') as string"
+              :options="ipTypeOptions"
+              :placeholder="t('common.placeholder') as string"
+            />
+          </div>
+
+          <div>
+            <BaseInput
+              v-model="formAPN"
+              :label="t('cellular.apn') as string"
+              :placeholder="t('common.placeholder') as string"
+            />
+          </div>
+
+          <div>
+            <BaseSelect
+              v-model="formPreferredAccessTechnology"
+              :label="t('cellular.preferredAccessTechnology') as string"
+              :options="preferredAccessTechOptions"
+              :placeholder="t('common.placeholder') as string"
+            />
           </div>
         </div>
-      </div>
-    </div>
+      </template>
+
+      <template #footer>
+        <div class="footer-actions">
+          <BaseButton variant="ghost" @click="handleCancel">
+            {{ t('common.cancel') }}
+          </BaseButton>
+          <BaseButton
+            variant="primary"
+            :disabled="disabledSave"
+            :loading="saving"
+            @click="handleSave"
+          >
+            {{ t('common.save') }}
+          </BaseButton>
+        </div>
+      </template>
+    </BaseCard>
   </div>
 </template>
 
 <style scoped>
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-}
-
-.form-row {
+.footer-actions {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.actions {
-  margin-top: var(--space-6);
-  display: flex;
+  justify-content: flex-end;
   gap: var(--space-3);
 }
 
@@ -246,5 +245,6 @@ const handleSave = async () => {
   display: flex;
   align-items: center;
   gap: 1rem;
+  padding: var(--space-4);
 }
 </style>
