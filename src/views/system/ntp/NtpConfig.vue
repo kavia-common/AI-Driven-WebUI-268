@@ -173,7 +173,7 @@ onMounted(fetchNtpSettings);
         </div>
       </template>
 
-      <div v-if="showSuccess" class="success-message" :data-testid="qa('ntp-success-message')">
+      <div v-if="showSuccess" class="toast-success" :data-testid="qa('ntp-success-message')">
         {{ t('common.apply') }} successful
       </div>
     </div>
@@ -188,16 +188,9 @@ onMounted(fetchNtpSettings);
   border-radius: 4px;
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--text-primary);
-}
-
+/* Inputs inside this scoped component keep their basic layout while
+ * leveraging shared form utilities for spacing and labels.
+ */
 input {
   width: 100%;
   padding: 0.5rem;
@@ -206,113 +199,8 @@ input {
   font-size: 0.9rem;
 }
 
-.switch-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--text-primary);
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  margin-left: 1rem;
-  flex-shrink: 0;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 34px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: var(--primary-color);
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.success-message {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #4caf50;
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  animation: fadeInOut 3s ease-in-out;
-  z-index: 100;
-}
-
-.loading-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: var(--shadow-sm);
-}
-
-.error-state {
-  padding: 2rem;
-  text-align: center;
-  color: #dc3545;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: var(--shadow-sm);
-}
-
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(-20px); }
-  10% { opacity: 1; transform: translateY(0); }
-  90% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-20px); }
-}
-
-@media (max-width: 768px) {
-  .button-group {
-    flex-direction: column;
-  }
-
-  .button-group .btn {
-    width: 100%;
-  }
-}
+/* The majority of layout/states (form-group, switch-label, switch,
+ * button-group, loading-state, error-state, toast-success) are provided
+ * by shared utility styles in src/styles/utilities.css.
+ */
 </style>

@@ -17,6 +17,9 @@
 @import './components/tables.css';
 @import './components/tabs.css';
 
+/* Utility Styles - Shared helpers used across views */
+@import './utilities.css';
+
 /* Layout Styles - Page structure and responsive design */
 @import './layouts/page.css';
 @import './layouts/responsive.css';

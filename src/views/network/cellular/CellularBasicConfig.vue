@@ -151,9 +151,9 @@ const handleCancel = () => {
             <div class="form-group">
               <div class="switch-label">
                 <span>{{ t('cellular.interfaceEnable') }}</span>
-                <label class="form-switch">
+                <label class="switch">
                   <input type="checkbox" v-model="formInterfaceEnable" />
-                  <span class="form-switch-slider"></span>
+                  <span class="slider"></span>
                 </label>
               </div>
             </div>
@@ -161,9 +161,9 @@ const handleCancel = () => {
             <div class="form-group">
               <div class="switch-label">
                 <span>{{ t('cellular.roamingEnabled') }}</span>
-                <label class="form-switch">
+                <label class="switch">
                   <input type="checkbox" v-model="formRoamingEnabled" />
-                  <span class="form-switch-slider"></span>
+                  <span class="slider"></span>
                 </label>
               </div>
             </div>
@@ -215,50 +215,12 @@ const handleCancel = () => {
 </template>
 
 <style scoped>
-.button-group {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.alert {
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-md);
-  margin-bottom: var(--space-4);
-}
-
-.alert-danger {
-  background-color: #ffe5e7;
-  color: #9b1c1c;
-  border: 1px solid #f5c2c7;
-}
-
-.alert-success {
-  background-color: #e6ffed;
-  color: #1f6f3e;
-  border: 1px solid #badbcc;
-}
-
-.error-state {
-  padding: 2rem;
-  text-align: center;
-  color: #dc3545;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: var(--shadow-sm);
-}
-
-.loading-state {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.switch-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--text-primary);
-}
+/* This view relies on shared utilities for:
+ * - .button-group: bottom action alignment
+ * - .alert / .alert-success / .alert-danger: inline feedback
+ * - .error-state / .loading-state: global status visuals
+ * - .switch-label / .switch + .slider: toggle presentation
+ *
+ * This block is intentionally minimal to keep styles centralized.
+ */
 </style>

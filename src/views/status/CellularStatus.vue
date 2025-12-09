@@ -269,23 +269,8 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.loading-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: var(--shadow-sm);
-}
-
-.error-state {
-  padding: 2rem;
-  text-align: center;
-  color: #dc3545;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: var(--shadow-sm);
-}
+/* No local styles required; layout and states are handled by shared utilities
+ * (e.g., .loading-state, .error-state, panel-section, info-grid). This block
+ * is kept for potential future component-specific overrides.
+ */
 </style>
