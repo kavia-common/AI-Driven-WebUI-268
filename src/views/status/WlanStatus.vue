@@ -36,8 +36,13 @@ onMounted(() => {
   <div class="page-container">
     <h1 class="page-title" :data-testid="qa('wlan-title')">{{ t('wlan.title') }}</h1>
     
-    <div v-if="wlanData" class="status-content" :data-testid="qa('wlan-content')">
-      <div v-for="band in wlanData.StatusWlan" :key="band.Band" class="panel-section" :data-testid="qa(`wlan-band-${slug(band.Band)}`)">
+    <div v-if="wlanData" class="status-content no-overflow-x" :data-testid="qa('wlan-content')">
+      <div
+        v-for="band in wlanData.StatusWlan"
+        :key="band.Band"
+        class="panel-section panel-section--light"
+        :data-testid="qa(`wlan-band-${slug(band.Band)}`)"
+      >
         <div class="section-title" :data-testid="qa(`wlan-band-title-${slug(band.Band)}`)">WiFi {{ band.Band }}</div>
         
         <div class="card-content">
@@ -115,5 +120,13 @@ onMounted(() => {
 </template>
 
 <style scoped>
+/* Match section spacing with LAN and cards */
+.panel-section {
+  margin-bottom: 1.5rem;
+}
 
+/* Defensive: ensure no horizontal scrollbar appears from nested content */
+.status-content {
+  overflow-x: hidden;
+}
 </style>
