@@ -1,0 +1,67 @@
+:root {
+  /* Frame token variables to match the 'band-config-like' style exactly */
+  --frame-border-color: #E2E8F0; /* subtle cool gray */
+  --frame-border-width: 1px;     /* thin border */
+  --frame-radius: 12px;          /* rounded corners like band config cards */
+  --frame-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 1px rgba(16, 24, 40, 0.02); /* subtle layered shadow */
+  --frame-bg: #FFFFFF;
+
+  /* Header spacing + typography tokens */
+  --frame-header-font-size: 14px;
+  --frame-header-font-weight: 600;
+  --frame-header-color: #101828;
+  --frame-header-padding-x: 16px;
+  --frame-header-padding-y: 12px;
+  --frame-header-letter-spacing: 0.2px;
+
+  /* Content padding */
+  --frame-content-padding-x: 16px;
+  --frame-content-padding-y: 16px;
+}
+
+/* PUBLIC_INTERFACE */
+/* Section frame: outer wrapper used by QoS sections and other band-config-like blocks */
+.frame-section {
+  background: var(--frame-bg);
+  border: var(--frame-border-width) solid var(--frame-border-color);
+  border-radius: var(--frame-radius);
+  box-shadow: var(--frame-shadow);
+  overflow: hidden; /* ensures header radius appears clean */
+}
+
+/* Header area within frame-section */
+.frame-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--frame-header-padding-y) var(--frame-header-padding-x);
+  border-bottom: var(--frame-border-width) solid var(--frame-border-color);
+  background: var(--frame-bg);
+}
+
+/* Title style for the header */
+.frame-section__title {
+  margin: 0;
+  font-size: var(--frame-header-font-size);
+  font-weight: var(--frame-header-font-weight);
+  color: var(--frame-header-color);
+  letter-spacing: var(--frame-header-letter-spacing);
+  line-height: 1.4;
+}
+
+/* Content area within frame-section */
+.frame-section__content {
+  padding: var(--frame-content-padding-y) var(--frame-content-padding-x);
+}
+
+/* Utility to prevent double frames when nested content already has borders */
+.frame-reset-inner-borders > * {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent;
+}
+
+/* Narrower content variant if needed */
+.frame-section--compact .frame-section__content {
+  padding: 12px 12px;
+}

@@ -1,7 +1,10 @@
 <template>
   <div class="qos-bandwidth-tab">
-    <div class="panel-section panel-section--light">
-      <div class="card-content">
+    <div class="frame-section">
+      <div class="frame-section__header">
+        <h2 class="frame-section__title">{{ t('qos.bandwidthTab') }}</h2>
+      </div>
+      <div class="frame-section__content">
         <div class="form-row enable-row">
           <label class="form-label">{{ t('qos.enableQos') }}</label>
           <label class="switch">
@@ -213,8 +216,8 @@
             {{ t('common.apply') }}
           </BaseButton>
         </div>
-        </div> <!-- .card-content -->
-      </div> <!-- .panel-section -->
+      </div>
+    </div>
   </div>
 </template>
 

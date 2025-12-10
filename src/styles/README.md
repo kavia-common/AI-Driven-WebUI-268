@@ -4,6 +4,14 @@
 
 This directory contains a structured and modular CSS design system for the application. The system is organized into three main categories: base styles, component styles, and layout styles.
 
+Note: A reusable section frame utility is available in components/frame.css. Use the following structure:
+- frame-section: outer container
+- frame-section__header: header row (with optional actions)
+- frame-section__title: title typography
+- frame-section__content: content area
+
+Import ensured via styles/index.css.
+
 ## Directory Structure
 
 ```
