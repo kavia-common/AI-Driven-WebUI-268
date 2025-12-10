@@ -16,7 +16,6 @@
 @import './components/forms.css';
 @import './components/tables.css';
 @import './components/tabs.css';
-@import './components/frame.css';
 
 /* Utility Styles - Shared helpers used across views */
 @import './utilities.css';

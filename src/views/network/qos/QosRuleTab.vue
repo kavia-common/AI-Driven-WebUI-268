@@ -1,73 +1,75 @@
 <template>
   <div class="qos-rule-tab">
-    <div class="frame-section">
-      <div class="frame-section__header">
-        <h2 class="frame-section__title">{{ t('qos.qosRuleLists') }}</h2>
-        <BaseButton @click="openAddModal" variant="primary">
-          {{ t('qos.addRule') }}
+    <BaseCard>
+      <div class="panel-section panel-section--light">
+        <div class="card-content">
+          <div class="rule-header">
+            <h3>{{ t('qos.qosRuleLists') }}</h3>
+            <BaseButton @click="openAddModal" variant="primary">
+              {{ t('qos.addRule') }}
+            </BaseButton>
+          </div>
+
+          <div class="rule-table-container">
+        <table class="draggable-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>{{ t('qos.no') }}</th>
+              <th>{{ t('qos.type') }}</th>
+              <th>{{ t('qos.name') }}</th>
+              <th>{{ t('qos.description') }}</th>
+              <th>{{ t('qos.priority') }}</th>
+              <th>{{ t('qos.action') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(row, index) in formData.RuleList"
+              :key="`rule-${index}`"
+              draggable="true"
+              @dragstart="handleDragStart($event, index)"
+              @dragover="handleDragOver($event, index)"
+              @dragenter="handleDragEnter($event, index)"
+              @dragleave="handleDragLeave($event)"
+              @drop="handleDrop($event, index)"
+              @dragend="handleDragEnd"
+              :class="{ 'drag-over': dragOverIndex === index }"
+            >
+              <td class="drag-handle">
+                <span class="material-icons">drag_indicator</span>
+              </td>
+              <td>{{ index + 1 }}</td>
+              <td>{{ row.Type }}</td>
+              <td>{{ row.Type === 'Application' ? row.ApplicationName : row.DeviceName }}</td>
+              <td>{{ formatDescription(row) }}</td>
+              <td>{{ row.Priority }}</td>
+              <td>
+                <div class="action-buttons">
+                  <button @click="handleEdit(row, index)" class="icon-btn" :title="t('common.edit')">
+                    <span class="material-icons">edit</span>
+                  </button>
+                  <button @click="handleDelete(index)" class="icon-btn" :title="t('common.delete')">
+                    <span class="material-icons">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="button-group">
+        <BaseButton @click="handleCancel" variant="secondary">
+          {{ t('common.cancel') }}
+        </BaseButton>
+        <BaseButton @click="handleApply" variant="primary">
+          {{ t('common.apply') }}
         </BaseButton>
       </div>
-
-      <div class="frame-section__content">
-        <div class="rule-table-container">
-          <table class="draggable-table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>{{ t('qos.no') }}</th>
-                <th>{{ t('qos.type') }}</th>
-                <th>{{ t('qos.name') }}</th>
-                <th>{{ t('qos.description') }}</th>
-                <th>{{ t('qos.priority') }}</th>
-                <th>{{ t('qos.action') }}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(row, index) in formData.RuleList"
-                :key="`rule-${index}`"
-                draggable="true"
-                @dragstart="handleDragStart($event, index)"
-                @dragover="handleDragOver($event, index)"
-                @dragenter="handleDragEnter($event, index)"
-                @dragleave="handleDragLeave($event)"
-                @drop="handleDrop($event, index)"
-                @dragend="handleDragEnd"
-                :class="{ 'drag-over': dragOverIndex === index }"
-              >
-                <td class="drag-handle">
-                  <span class="material-icons">drag_indicator</span>
-                </td>
-                <td>{{ index + 1 }}</td>
-                <td>{{ row.Type }}</td>
-                <td>{{ row.Type === 'Application' ? row.ApplicationName : row.DeviceName }}</td>
-                <td>{{ formatDescription(row) }}</td>
-                <td>{{ row.Priority }}</td>
-                <td>
-                  <div class="action-buttons">
-                    <button @click="handleEdit(row, index)" class="icon-btn" :title="t('common.edit')">
-                      <span class="material-icons">edit</span>
-                    </button>
-                    <button @click="handleDelete(index)" class="icon-btn" :title="t('common.delete')">
-                      <span class="material-icons">delete</span>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="button-group">
-          <BaseButton @click="handleCancel" variant="secondary">
-            {{ t('common.cancel') }}
-          </BaseButton>
-          <BaseButton @click="handleApply" variant="primary">
-            {{ t('common.apply') }}
-          </BaseButton>
-        </div>
-      </div>
-    </div>
+        </div> <!-- .card-content -->
+      </div> <!-- .panel-section -->
+    </BaseCard>
 
     <BaseModal
       v-model="showAddModal"
@@ -167,7 +169,9 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
+import BaseCard from '../../../components/common/BaseCard.vue';
 import BaseButton from '../../../components/common/BaseButton.vue';
+import BaseTable from '../../../components/common/BaseTable.vue';
 import BaseModal from '../../../components/common/BaseModal.vue';
 import BaseInput from '../../../components/common/BaseInput.vue';
 import BaseSelect from '../../../components/common/BaseSelect.vue';

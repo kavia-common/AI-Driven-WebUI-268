@@ -183,7 +183,7 @@ onMounted(fetchBasicConfig);
         <!-- Common SSID Band Settings Section (shown when Common SSID is enabled) -->
         <div
           v-if="wlanBasicData.WlanBasic.CommonSSIDEnable === 1"
-          class="panel-section"
+          class="panel-section panel-section--light"
           :data-testid="qa('wireless-basic-config-common-ssid-band-section')"
         >
           <div class="band-header">

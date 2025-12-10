@@ -1,10 +1,8 @@
 <template>
   <div class="qos-bandwidth-tab">
-    <div class="frame-section">
-      <div class="frame-section__header">
-        <h2 class="frame-section__title">{{ t('qos.bandwidthTab') }}</h2>
-      </div>
-      <div class="frame-section__content">
+    <BaseCard>
+      <div class="panel-section panel-section--light">
+        <div class="card-content">
         <div class="form-row enable-row">
           <label class="form-label">{{ t('qos.enableQos') }}</label>
           <label class="switch">
@@ -216,15 +214,16 @@
             {{ t('common.apply') }}
           </BaseButton>
         </div>
-      </div>
-    </div>
+        </div> <!-- .card-content -->
+      </div> <!-- .panel-section -->
+    </BaseCard>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-
+import BaseCard from '../../../components/common/BaseCard.vue';
 import BaseInput from '../../../components/common/BaseInput.vue';
 import BaseButton from '../../../components/common/BaseButton.vue';
 import { qosApi } from '../../../services/api/qos';
