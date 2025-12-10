@@ -179,35 +179,38 @@
  }
 
  /* Lightweight panel section used for band-like sections (e.g. WLAN Basic, QoS).
-  * This is aligned to the visual style of the wireless band-config cards:
-  * - white background
-  * - 1px neutral border
-  * - 4px radius
-  * - subtle small shadow (same as cards)
+  * Align this explicitly to the same outer frame as band-config/card wrappers:
+  * - use the same background, border, radius, shadow as cards
+  * - use the same header padding/typography spacing as .card-header / .card-title
   *
   * Usage:
   *   <div class="panel-section panel-section--light">
   *     <div class="section-title">Title</div>
-  *     <div class="card-content">
-  *       ...
-  *     </div>
+  *     <div class="card-content">...</div>
   *   </div>
   *
-  * NOTE: Padding is still provided by .card-content to avoid double padding
-  * when nested inside other card-like layouts.
+  * NOTE: Content padding remains with .card-content to avoid double padding.
   */
  .panel-section--light {
-   background-color: #ffffff;
+   background-color: var(--bg-secondary); /* match .card background */
    border: 1px solid var(--border-color);
-   border-radius: 4px;
+   border-radius: var(--radius-lg); /* match .card radius */
    box-shadow: var(--shadow-sm);
+   overflow: hidden; /* ensure header/content clipping matches cards */
  }
 
+ /* Header area for light panels should mirror card headers */
  .panel-section--light .section-title {
-   background-color: #ffffff;
+   padding: var(--space-6); /* match .card-header spacing */
+   font-size: var(--font-size-lg); /* align with .card-title */
+   font-weight: var(--font-weight-semibold);
+   color: var(--text-primary);
+   background-color: var(--bg-tertiary); /* match card header bg */
    border-bottom: 1px solid var(--border-color);
+   margin: 0;
  }
 
+ /* Body/content padding aligns to .card-body spacing */
  .panel-section--light .card-content {
-   padding: 1.5rem;
+   padding: var(--space-6);
  }
