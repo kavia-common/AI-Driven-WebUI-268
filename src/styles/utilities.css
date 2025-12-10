@@ -178,6 +178,19 @@
    z-index: 100;
  }
 
+ /* Elevation utility matching default card/band-config frame */
+ .elevation-card {
+   /* Use the same token as .card and band-config for consistent shadow */
+   box-shadow: var(--shadow-md);
+ }
+
+ /* Ensure no horizontal scrollbar appears due to shadow rendering or rounded corners */
+ .no-overflow-x,
+ .wlan-basic--no-horizontal-scroll,
+ .panel-section--light {
+   overflow-x: hidden;
+ }
+
  /* Lightweight panel section used for band-like sections (e.g. WLAN Basic, QoS).
   * Align this explicitly to the same outer frame as band-config/card wrappers:
   * - use the same background, border, radius, shadow as cards
@@ -195,7 +208,8 @@
    background-color: var(--bg-secondary); /* match .card background */
    border: 1px solid var(--border-color);
    border-radius: var(--radius-lg); /* match .card radius */
-   box-shadow: var(--shadow-sm);
+   /* Reuse elevation utility token to ensure LR shadow visibility */
+   box-shadow: var(--shadow-md);
    overflow: hidden; /* ensure header/content clipping matches cards */
  }
 
