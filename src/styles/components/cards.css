@@ -58,11 +58,11 @@
  * should be applied via modifier utilities such as .panel-section--light.
  */
 .panel-section {
-  background-color: var(--bg-secondary);
-  border-radius: 4px;
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
+  /* Neutral base container; visual frame applied by modifiers like --light */
+  background-color: transparent;
+  border-radius: 0;
   margin-bottom: 1.5rem;
+  box-shadow: none;
 }
 
 .section-title {

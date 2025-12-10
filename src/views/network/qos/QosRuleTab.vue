@@ -1,8 +1,7 @@
 <template>
   <div class="qos-rule-tab">
-    <BaseCard>
-      <div class="panel-section panel-section--light">
-        <div class="card-content">
+    <div class="panel-section panel-section--light">
+      <div class="card-content">
           <div class="rule-header">
             <h3>{{ t('qos.qosRuleLists') }}</h3>
             <BaseButton @click="openAddModal" variant="primary">
@@ -69,7 +68,6 @@
       </div>
         </div> <!-- .card-content -->
       </div> <!-- .panel-section -->
-    </BaseCard>
 
     <BaseModal
       v-model="showAddModal"
@@ -169,9 +167,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import BaseCard from '../../../components/common/BaseCard.vue';
 import BaseButton from '../../../components/common/BaseButton.vue';
-import BaseTable from '../../../components/common/BaseTable.vue';
 import BaseModal from '../../../components/common/BaseModal.vue';
 import BaseInput from '../../../components/common/BaseInput.vue';
 import BaseSelect from '../../../components/common/BaseSelect.vue';
