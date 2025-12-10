@@ -148,10 +148,9 @@ onMounted(fetchAdvancedConfig);
 
 <style scoped>
 .wireless-advanced-config {
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
   position: relative;
+  overflow-x: hidden;
 }
 
 .loading-overlay {
@@ -165,6 +164,20 @@ onMounted(fetchAdvancedConfig);
   justify-content: center;
   align-items: center;
   z-index: 10;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #0070BB;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .mlo-status {
@@ -190,6 +203,53 @@ onMounted(fetchAdvancedConfig);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 1.5rem;
+  overflow-x: hidden;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 0 1.5rem 1.5rem;
+}
+
+.btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-primary {
+  background-color: #0070BB;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.btn:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column;
+    padding: 0 1rem 1rem;
+  }
+
+  .button-group .btn {
+    width: 100%;
+  }
 }
 </style>

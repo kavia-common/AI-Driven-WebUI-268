@@ -120,13 +120,39 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* Match section spacing with LAN and cards */
+/* Ensure panel-section styling matches LAN status baseline */
 .panel-section {
-  margin-bottom: 1.5rem;
+  /* Inherits: background, border, border-radius 4px, shadow-md, overflow hidden */
+  margin-bottom: 1.5rem; /* match LAN inter-panel spacing */
+  overflow-x: hidden;
+}
+
+.panel-section:last-child {
+  margin-bottom: 0; /* remove bottom margin from last panel */
+}
+
+/* Ensure section-title matches LAN styling */
+.section-title {
+  padding: 1rem 1.5rem; /* match LAN section-title exactly */
+  font-size: var(--font-size-base); /* 1rem */
+  font-weight: normal; /* match LAN */
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  line-height: var(--line-height-normal);
+  margin: 0;
+}
+
+.card-content {
+  padding: 1.5rem; /* match LAN card-content */
 }
 
 /* Defensive: ensure no horizontal scrollbar appears from nested content */
 .status-content {
+  overflow-x: hidden;
+}
+
+.no-overflow-x {
   overflow-x: hidden;
 }
 </style>

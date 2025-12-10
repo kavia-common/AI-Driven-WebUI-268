@@ -112,10 +112,12 @@ const updateConfig = (field: keyof WlanAdvancedConfig, value: string | number) =
 
 <style scoped>
 .band-config {
-  background-color: white;
-  border-radius: 4px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px; /* match LAN panel radius */
   margin-bottom: 1.5rem;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-md); /* use consistent elevation token */
+  overflow: hidden;
 }
 
 .band-config:last-child {
@@ -126,20 +128,23 @@ const updateConfig = (field: keyof WlanAdvancedConfig, value: string | number) =
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.4rem 1.5rem;
-  background-color: white;
+  padding: 1rem 1.5rem; /* match LAN section-title padding */
+  background-color: var(--bg-tertiary); /* match LAN header bg */
   border-bottom: 1px solid var(--border-color);
 }
 
 .section-title-sp {
-  font-size: 1rem;
+  font-size: var(--font-size-base); /* 1rem, match LAN */
+  font-weight: normal; /* match LAN section-title weight */
   color: var(--text-primary);
-  padding: 0.5rem 0rem;
-  background-color: white;
+  line-height: var(--line-height-normal);
+  padding: 0;
+  background-color: transparent;
+  margin: 0;
 }
 
 .band-content {
-  padding: 1.5rem;
+  padding: 1.5rem; /* match LAN card-content padding */
 }
 
 .form-group {

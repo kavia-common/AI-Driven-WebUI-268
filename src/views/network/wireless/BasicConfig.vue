@@ -304,6 +304,7 @@ onMounted(fetchBasicConfig);
 <style scoped>
 .wireless-basic-config {
   position: relative;
+  overflow-x: hidden;
 }
 
 .wlan-basic--no-horizontal-scroll {
@@ -379,19 +380,57 @@ onMounted(fetchBasicConfig);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  overflow-x: hidden; /* prevent horizontal scrollbar from nested sections */
 }
-
-
 
 .band-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 1.5rem; /* match LAN section-title padding */
+  background-color: var(--bg-tertiary); /* match LAN header bg */
+  border-bottom: 1px solid var(--border-color);
 }
 
 .section-title-sp {
-  font-size: 1rem;
+  font-size: var(--font-size-base); /* 1rem, match LAN */
+  font-weight: normal; /* match LAN section-title weight */
   color: var(--text-primary);
+  line-height: var(--line-height-normal);
+  padding: 0; /* remove padding as band-header provides it */
+  margin: 0;
+}
+
+/* panel-section styling inherits from global utilities.css and cards.css */
+/* Ensure any scoped overrides align with LAN baseline */
+
+.panel-section {
+  /* Inherits from global: background, border, border-radius 4px, shadow-md, overflow hidden, margin-bottom 1.5rem */
+  overflow-x: hidden;
+}
+
+.section-title {
+  padding: 1rem 1.5rem; /* match LAN exactly */
+  font-size: var(--font-size-base); /* 1rem, match LAN */
+  font-weight: normal; /* match LAN section-title weight */
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary); /* match LAN header bg */
+  border-bottom: 1px solid var(--border-color);
+  margin: 0;
+  line-height: var(--line-height-normal);
+}
+
+.card-content {
+  padding: 1.5rem; /* match LAN exactly */
+}
+
+/* Ensure panel-section--light inherits properly and doesn't cause overflow */
+.panel-section--light {
+  overflow-x: hidden;
+}
+
+.band-content {
+  padding: 1.5rem;
 }
 
 .form-group {
@@ -511,18 +550,6 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(26px);
-}
-
-.section-title {
-  padding: 1rem 1.5rem;
-  font-size: 1rem;
-  color: var(--text-primary);
-  background-color: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.card-content {
-  padding: 1.5rem;
 }
 
 .button-group {

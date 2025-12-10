@@ -192,9 +192,9 @@
  }
 
  /* Lightweight panel section used for band-like sections (e.g. WLAN Basic, QoS).
-  * Align this explicitly to the same outer frame as band-config/card wrappers:
-  * - use the same background, border, radius, shadow as cards
-  * - use the same header padding/typography spacing as .card-header / .card-title
+  * Align this explicitly to the same outer frame as LAN .panel-section:
+  * - use the same background, border, radius (4px), shadow as LAN panels
+  * - use the same header padding/typography spacing as LAN .section-title
   *
   * Usage:
   *   <div class="panel-section panel-section--light">
@@ -205,26 +205,27 @@
   * NOTE: Content padding remains with .card-content to avoid double padding.
   */
  .panel-section--light {
-   background-color: var(--bg-secondary); /* match .card background */
+   background-color: var(--bg-secondary); /* match LAN panel background */
    border: 1px solid var(--border-color);
-   border-radius: var(--radius-lg); /* match .card radius */
-   /* Reuse elevation utility token to ensure LR shadow visibility */
-   box-shadow: var(--shadow-md);
-   overflow: hidden; /* ensure header/content clipping matches cards */
+   border-radius: 4px; /* match LAN panel radius exactly */
+   box-shadow: var(--shadow-md); /* match LAN panel elevation */
+   overflow: hidden; /* ensure header/content clipping matches panels */
+   margin-bottom: 1.5rem; /* match LAN inter-panel spacing */
  }
 
- /* Header area for light panels should mirror card headers */
+ /* Header area for light panels should mirror LAN section-title exactly */
  .panel-section--light .section-title {
-   padding: var(--space-6); /* match .card-header spacing */
-   font-size: var(--font-size-lg); /* align with .card-title */
-   font-weight: var(--font-weight-semibold);
+   padding: 1rem 1.5rem; /* match LAN .section-title spacing exactly */
+   font-size: var(--font-size-base); /* match LAN section-title (1rem) */
+   font-weight: normal; /* match LAN section-title weight */
    color: var(--text-primary);
-   background-color: var(--bg-tertiary); /* match card header bg */
+   background-color: var(--bg-tertiary); /* match LAN header bg */
    border-bottom: 1px solid var(--border-color);
    margin: 0;
+   line-height: var(--line-height-normal);
  }
 
- /* Body/content padding aligns to .card-body spacing */
+ /* Body/content padding aligns to LAN .card-content spacing */
  .panel-section--light .card-content {
-   padding: var(--space-6);
+   padding: 1.5rem; /* match LAN card-content padding exactly */
  }
