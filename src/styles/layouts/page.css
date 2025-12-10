@@ -65,6 +65,9 @@
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
+  /* Defensive: avoid transient horizontal scrollbars from nested hover/focus effects */
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* Header Row (for action buttons) */

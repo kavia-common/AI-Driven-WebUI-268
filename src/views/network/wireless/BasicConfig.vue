@@ -113,7 +113,7 @@ onMounted(fetchBasicConfig);
 </script>
 
 <template>
-  <div class="wireless-basic-config" :data-testid="qa('wireless-basic-config-content')">
+  <div class="wireless-basic-config wlan-basic--no-horizontal-scroll" :data-testid="qa('wireless-basic-config-content')">
     <form @submit.prevent="handleSubmit" :class="{ 'loading': loading }" :data-testid="qa('wireless-basic-config-form')">
       <div v-if="loading" class="loading-overlay" :data-testid="qa('wireless-basic-config-loading-overlay')">
         <div class="loading-spinner"></div>
@@ -133,7 +133,7 @@ onMounted(fetchBasicConfig);
         </div>
 
         <!-- Common SSID Settings Section -->
-        <div class="panel-section panel-section--light" :data-testid="qa('wireless-basic-config-common-ssid-section')">
+        <div class="panel-section" :data-testid="qa('wireless-basic-config-common-ssid-section')">
           <div class="section-title" :data-testid="qa('wireless-basic-config-common-ssid-title')">{{ t('wireless.commonSsidSettings') }}</div>
           <div class="card-content" :data-testid="qa('wireless-basic-config-common-ssid-content')">
             <!-- Common SSID Enable Toggle -->
@@ -157,7 +157,7 @@ onMounted(fetchBasicConfig);
         </div>
 
         <!-- MLO Settings Section -->
-        <div class="panel-section panel-section--light" :data-testid="qa('wireless-basic-config-mlo-section')">
+        <div class="panel-section" :data-testid="qa('wireless-basic-config-mlo-section')">
           <div class="section-title" :data-testid="qa('wireless-basic-config-mlo-title')">{{ t('wireless.mloSettings') }}</div>
           <div class="card-content" :data-testid="qa('wireless-basic-config-mlo-content')">
             <!-- MLO Enable Toggle -->
@@ -304,6 +304,10 @@ onMounted(fetchBasicConfig);
 <style scoped>
 .wireless-basic-config {
   position: relative;
+}
+
+.wlan-basic--no-horizontal-scroll {
+  overflow-x: hidden;
 }
 
 .loading-overlay {

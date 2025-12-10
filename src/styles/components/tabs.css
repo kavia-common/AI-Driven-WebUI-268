@@ -10,44 +10,33 @@
   gap: 0;
   background-color: var(--bg-secondary);
   border-bottom: 2px solid var(--border-color);
-  overflow-x: auto;
+
+  /* Prevent horizontal scrollbar when hover/focus effects apply on tabs */
+  overflow-x: hidden;
   overflow-y: hidden;
+
   -webkit-overflow-scrolling: touch;
   position: relative;
+
+  /* Ensure borders do not affect computed width */
+  box-sizing: border-box;
 }
 
-/* Hide scrollbar by default, show only when hovering and actually scrollable */
+/* Always hide horizontal scrollbar for tabs navigation to prevent jitter */
 .tab-navigation {
   scrollbar-width: none;
 }
 
 .tab-navigation::-webkit-scrollbar {
-  height: 6px;
+  height: 0;
+  width: 0;
   display: none;
 }
 
-/* Only show scrollbar on hover if content is scrollable */
+/* Keep hover effects visual-only; do not toggle scrollbar visibility on hover */
 @media (hover: hover) {
   .tab-navigation:hover {
-    scrollbar-width: thin;
-    scrollbar-color: var(--border-color) transparent;
-  }
-
-  .tab-navigation:hover::-webkit-scrollbar {
-    display: block;
-  }
-
-  .tab-navigation::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .tab-navigation::-webkit-scrollbar-thumb {
-    background-color: var(--border-color);
-    border-radius: var(--radius-full);
-  }
-
-  .tab-navigation::-webkit-scrollbar-thumb:hover {
-    background-color: var(--color-gray-400);
+    scrollbar-width: none;
   }
 }
 
@@ -58,12 +47,20 @@
   font-weight: var(--font-weight-medium);
   color: var(--text-secondary);
   background: none;
-  border: none;
+
+  /* Use a stable transparent border to avoid width growth on state changes */
+  border: 1px solid transparent;
+  border-bottom-color: transparent;
+
   cursor: pointer;
   white-space: nowrap;
-  transition: all var(--transition-fast);
+
+  /* Limit transitions to non-layout properties */
+  transition: color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
   position: relative;
-  border-bottom: 1px solid transparent;
+
+  /* Ensure borders counted inside width */
+  box-sizing: border-box;
 }
 
 /* Bottom border indicator using ::after */
@@ -81,11 +78,13 @@
 .tab-button:hover {
   color: var(--color-primary);
   background-color: var(--color-primary-light);
+  border-color: transparent; /* prevent width change on hover */
 }
 
 .tab-button.active {
   color: var(--color-primary);
   font-weight: var(--font-weight-semibold);
+  border-color: transparent; /* maintain same border thickness */
 }
 
 .tab-button.active::after {
@@ -93,8 +92,9 @@
 }
 
 .tab-button:focus-visible {
-  outline: 2px solid var(--border-color-focus);
-  outline-offset: -2px;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--border-color-focus);
 }
 
 .tab-button:disabled {

@@ -1,5 +1,5 @@
 <template>
-  <div :class="tabsClasses">
+  <div :class="tabsClasses" class="tabs-root-overflow-guard">
     <div :class="navigationClasses">
       <button
         v-for="(tab, index) in tabs"
@@ -96,3 +96,9 @@ const selectTab = (index: number) => {
   emit('tab-change', index, props.tabs[index]);
 };
 </script>
+
+<style scoped>
+.tabs-root-overflow-guard {
+  overflow-x: hidden;
+}
+</style>
