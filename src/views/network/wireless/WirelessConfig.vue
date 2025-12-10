@@ -110,5 +110,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* 移除原有的 tab-navigation 相關樣式 */
+/* Tab navigation and content styles inherit from global tabs.css */
+/* No scoped overrides needed - global tab styles already prevent horizontal overflow */
+/* and maintain proper hover/active/focus states without width changes */
 </style>

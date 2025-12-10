@@ -387,50 +387,60 @@ onMounted(fetchBasicConfig);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.5rem; /* match LAN section-title padding */
+  padding: 1rem 1.5rem; /* match LAN section-title padding exactly */
   background-color: var(--bg-tertiary); /* match LAN header bg */
   border-bottom: 1px solid var(--border-color);
 }
 
 .section-title-sp {
-  font-size: var(--font-size-base); /* 1rem, match LAN */
+  font-size: var(--font-size-base); /* 1rem, match LAN section-title */
   font-weight: normal; /* match LAN section-title weight */
   color: var(--text-primary);
-  line-height: var(--line-height-normal);
-  padding: 0; /* remove padding as band-header provides it */
+  line-height: var(--line-height-normal); /* match LAN line-height */
+  letter-spacing: normal; /* match LAN letter-spacing */
+  padding: 0; /* padding provided by band-header */
   margin: 0;
 }
 
-/* panel-section styling inherits from global utilities.css and cards.css */
-/* Ensure any scoped overrides align with LAN baseline */
-
+/* Ensure panel-section aligns to LAN baseline */
 .panel-section {
-  /* Inherits from global: background, border, border-radius 4px, shadow-md, overflow hidden, margin-bottom 1.5rem */
-  overflow-x: hidden;
+  /* Inherits from global utilities.css: background, border, border-radius 4px, shadow-md */
+  margin-bottom: 1.5rem; /* match LAN inter-panel spacing */
+  overflow: hidden; /* prevent horizontal scroll from nested content */
+}
+
+.panel-section:last-child {
+  margin-bottom: 1.5rem; /* maintain consistent spacing even for last child */
 }
 
 .section-title {
-  padding: 1rem 1.5rem; /* match LAN exactly */
+  padding: 1rem 1.5rem; /* match LAN section-title padding exactly */
   font-size: var(--font-size-base); /* 1rem, match LAN */
   font-weight: normal; /* match LAN section-title weight */
   color: var(--text-primary);
   background-color: var(--bg-tertiary); /* match LAN header bg */
   border-bottom: 1px solid var(--border-color);
   margin: 0;
-  line-height: var(--line-height-normal);
+  line-height: var(--line-height-normal); /* match LAN line-height */
+  letter-spacing: normal; /* match LAN letter-spacing */
 }
 
 .card-content {
-  padding: 1.5rem; /* match LAN exactly */
+  padding: 1.5rem; /* match LAN card-content padding exactly */
 }
 
-/* Ensure panel-section--light inherits properly and doesn't cause overflow */
+/* Ensure panel-section--light aligns to LAN baseline and prevents overflow */
 .panel-section--light {
-  overflow-x: hidden;
+  margin-bottom: 1.5rem; /* match LAN inter-panel spacing */
+  overflow: hidden; /* prevent horizontal scroll */
+}
+
+.panel-section--light:last-child {
+  margin-bottom: 1.5rem; /* maintain consistent spacing */
 }
 
 .band-content {
-  padding: 1.5rem;
+  padding: 1.5rem; /* match LAN card-content padding exactly */
 }
 
 .form-group {
@@ -555,8 +565,9 @@ input:checked + .slider:before {
 .button-group {
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
+  gap: 1rem; /* match LAN button spacing */
+  margin-top: 2rem;
+  padding: 1rem 1.5rem; /* match LAN button-group padding */
 }
 
 .btn {

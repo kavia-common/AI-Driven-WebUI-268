@@ -120,31 +120,32 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* Ensure panel-section styling matches LAN status baseline */
+/* Ensure panel-section styling matches LAN baseline exactly */
 .panel-section {
-  /* Inherits: background, border, border-radius 4px, shadow-md, overflow hidden */
+  /* Inherits from global: background, border, border-radius 4px, shadow-md */
   margin-bottom: 1.5rem; /* match LAN inter-panel spacing */
-  overflow-x: hidden;
+  overflow: hidden; /* prevent horizontal scroll */
 }
 
 .panel-section:last-child {
-  margin-bottom: 0; /* remove bottom margin from last panel */
+  margin-bottom: 1.5rem; /* maintain consistent spacing */
 }
 
-/* Ensure section-title matches LAN styling */
+/* Ensure section-title matches LAN baseline exactly */
 .section-title {
-  padding: 1rem 1.5rem; /* match LAN section-title exactly */
-  font-size: var(--font-size-base); /* 1rem */
-  font-weight: normal; /* match LAN */
+  padding: 1rem 1.5rem; /* match LAN section-title padding exactly */
+  font-size: var(--font-size-base); /* 1rem, match LAN */
+  font-weight: normal; /* match LAN section-title weight */
   color: var(--text-primary);
-  background-color: var(--bg-tertiary);
+  background-color: var(--bg-tertiary); /* match LAN header bg */
   border-bottom: 1px solid var(--border-color);
-  line-height: var(--line-height-normal);
+  line-height: var(--line-height-normal); /* match LAN line-height */
+  letter-spacing: normal; /* match LAN letter-spacing */
   margin: 0;
 }
 
 .card-content {
-  padding: 1.5rem; /* match LAN card-content */
+  padding: 1.5rem; /* match LAN card-content padding exactly */
 }
 
 /* Defensive: ensure no horizontal scrollbar appears from nested content */

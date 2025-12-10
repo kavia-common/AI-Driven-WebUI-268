@@ -213,6 +213,10 @@
    margin-bottom: 1.5rem; /* match LAN inter-panel spacing */
  }
 
+ .panel-section--light:last-child {
+   margin-bottom: 1.5rem; /* maintain consistent spacing even for last child */
+ }
+
  /* Header area for light panels should mirror LAN section-title exactly */
  .panel-section--light .section-title {
    padding: 1rem 1.5rem; /* match LAN .section-title spacing exactly */
@@ -222,7 +226,8 @@
    background-color: var(--bg-tertiary); /* match LAN header bg */
    border-bottom: 1px solid var(--border-color);
    margin: 0;
-   line-height: var(--line-height-normal);
+   line-height: var(--line-height-normal); /* match LAN line-height */
+   letter-spacing: normal; /* match LAN letter-spacing */
  }
 
  /* Body/content padding aligns to LAN .card-content spacing */

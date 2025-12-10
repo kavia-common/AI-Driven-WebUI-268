@@ -202,16 +202,16 @@ onMounted(fetchAdvancedConfig);
 .band-sections {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  overflow-x: hidden;
+  gap: 1.5rem; /* match LAN inter-panel spacing */
+  overflow: hidden; /* prevent horizontal scroll */
 }
 
 .button-group {
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: 1rem; /* match LAN button spacing */
   margin-top: 2rem;
-  padding: 0 1.5rem 1.5rem;
+  padding: 1rem 1.5rem; /* align padding to LAN baseline */
 }
 
 .btn {

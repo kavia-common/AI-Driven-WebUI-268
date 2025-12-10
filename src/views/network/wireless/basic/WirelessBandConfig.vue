@@ -108,10 +108,10 @@ const updateConfig = (field: keyof WlanBasicConfig, value: string | number) => {
 .band-config {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: 4px; /* match LAN panel radius */
-  margin-bottom: 1.5rem;
-  box-shadow: var(--shadow-md); /* use consistent elevation token */
-  overflow: hidden; /* prevent horizontal scroll from nested content */
+  border-radius: 4px; /* match LAN panel radius exactly */
+  margin-bottom: 1.5rem; /* match LAN inter-panel spacing */
+  box-shadow: var(--shadow-md); /* match LAN elevation token */
+  overflow: hidden; /* prevent horizontal scroll */
 }
 
 .band-config:last-child {
